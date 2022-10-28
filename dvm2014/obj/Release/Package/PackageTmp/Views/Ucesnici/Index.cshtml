@@ -1,0 +1,211 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<dvm2014.Models.Ucesnici>
+
+@{
+    ViewBag.Title = "Регистрација";
+}
+<div class="container">
+<h2>Регистрација</h2>
+
+<p>
+    @Html.ActionLink("Внеси нов учесник", "Create", null, new { @class = "btn btn-warning" })&nbsp;
+    @Html.ActionLink("Пребарување", "SearchIndex", null, new { @class = "btn btn-info" })
+</p>
+<div class="datagrid">
+<table>
+   <thead> <tr>
+       <th>
+            Статус
+        </th>
+        <th>
+            Име и презиме
+        </th>
+        
+        <th>
+            Учество
+        </th>
+       <th>
+            Упл.
+        </th>
+        <th>
+            Сместување
+        </th>
+       <th>
+            Упл.
+        </th>
+        <th>
+            Работ.
+        </th>
+       <th>
+            Упл.
+        </th>
+        <th>
+            Ноќи
+        </th>
+        <th>
+            Соба
+        </th>
+       <th>
+            Допол.
+        </th>
+        <th>
+            Упл.
+        </th>
+        <th>
+            Валута
+        </th>
+        <th>Команди</th>
+    </tr>
+</thead>
+    <tfoot>
+        <tr>
+        <td colspan="14" ><div id="paging">&nbsp;</div></td>
+        </tr>
+    </tfoot>
+
+    <tbody>
+@foreach (var item in Model){
+    <tr>      
+
+        @if ((item.Pecateno) == "0")
+        {
+            <td style="background-color: indianred;">X
+            </td>
+        }
+        else
+        {
+            <td style="background-color: lightgreen;">&#10004;
+            </td>
+        }        
+             
+        <td>
+            @Html.ActionLink(item.ImePrezime, "Details", new {id = item.UcesnikID})
+        </td>
+        
+        
+        <td style="background-color: Highlight;">
+           <b> @Html.DisplayFor(modelItem => item.Ucestvo)</b>
+        </td>
+
+         @if ((item.NacinUplata) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X
+            </td>
+        }
+         else if ((item.NacinUplata) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г
+            </td>
+        }
+        else if ((item.NacinUplata) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В
+            </td>
+        }
+         
+
+        @*<td>
+            @Html.DisplayFor(modelItem => item.NacinUplata)
+        </td>*@
+        
+        <td style="background-color: Highlight;">
+            <b> @Html.DisplayFor(modelItem => item.Smestuvanje)</b>
+        </td>
+        @if ((item.NacinUplataS) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X
+            </td>
+        }
+         else if ((item.NacinUplataS) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г
+            </td>
+        }
+        else if ((item.NacinUplataS) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В
+            </td>
+        } 
+        @*<td>
+            @Html.DisplayFor(modelItem => item.NacinUplataS)
+        </td>*@
+        <td style="background-color: Highlight;">
+          <b> @Html.DisplayFor(modelItem => item.NacVecera)</b>
+        </td>
+        @if ((item.NacinUplataN) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X
+            </td>
+        }
+         else if ((item.NacinUplataN) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г
+            </td>
+        }
+        else if ((item.NacinUplataN) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В
+            </td>
+        } 
+        @*<td>
+            @Html.DisplayFor(modelItem => item.NacinUplataN)
+        </td>*@
+        <td style="background-color: Highlight;">
+            <b> @Html.DisplayFor(modelItem => item.Provizija)</b>
+        </td>
+        @if ((item.NacinUplataP) == "Single Room")
+        {
+            <td style="background-color: #d4e97e; font-weight:bold;">S
+            </td>
+        }
+        else if ((item.NacinUplataP) == "Double Room")
+        {
+            <td style="background-color: #d697e9; font-weight:bold;">D
+            </td>
+        }
+       else if ((item.NacinUplataP) == "No Room")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X
+            </td>
+        }
+        @*<td>
+            @Html.DisplayFor(modelItem => item.NacinUplataP)
+        </td>*@
+        <td style="background-color: Highlight;">
+            <b> @Html.DisplayFor(modelItem => item.DopoTrosoci)</b>
+        </td>
+        @if ((item.NacinUplataD) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X
+            </td>
+        }
+         else if ((item.NacinUplataD) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г
+            </td>
+        }
+        else if ((item.NacinUplataD) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В
+            </td>
+        } 
+        <td>
+            @Html.DisplayFor(modelItem => item.Valuta)
+        </td>
+        <td style="font-size:x-small;">
+            @Html.ActionLink("Промени", "Edit", new { id=item.UcesnikID }) |
+           
+            @Html.ActionLink("Бриши", "Delete", new { id=item.UcesnikID })
+        </td>
+    </tr>
+}
+        </tbody>
+
+</table>
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }), 
+new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded })
+
+    </div>
+</div>

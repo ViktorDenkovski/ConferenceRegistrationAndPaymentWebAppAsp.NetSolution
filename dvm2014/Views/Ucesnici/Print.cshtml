@@ -1,0 +1,92 @@
+﻿@model dvm2014.Models.Ucesnici
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <div align="right">UID: @Model.UcesnikID</div>
+    <img src="@Context.Server.MapPath("~/Images/memorandum-newtop.png")" width="520" height="70"/>
+    <table width="443">
+        
+        <tr><td colspan="2"><br /></td></tr>
+        <tr><td colspan="2"><br /></td></tr>
+        <tr>
+            <td colspan="2" align="center">
+                <h3>9<sup>th</sup> International Scientific Meeting - "Days of Veterinary Medicine 2022"</h3>
+            </td>
+        </tr>
+        <tr><td colspan="2"><br /></td></tr>
+        <tr>
+            <td  colspan="2" align="center">
+                <b>22 - 25 September 2022</b>
+            </td>
+        </tr>
+        <tr>
+            <td  colspan="2" align="center">
+                <b>Ohrid, R. N. Macedonia</b>
+            </td>
+        </tr>
+        <tr><td colspan="2"><br /></td></tr>
+        <tr>
+            <td align="right"  colspan="2">Date: <b>@DateTime.Now.Date.ToString("dd/MM/yyyy")</b></td>
+        </tr>
+        <tr><td colspan="2"><br /></td></tr>
+        <tr><td colspan="2"><br /></td></tr>
+            <tr>
+                <td  colspan="2">Name and Surname: <b>@Model.ImePrezime</b></td>
+            </tr>
+        <tr><td colspan="2">--------------------------------------------------------------------------------------------------------------</td></tr>
+            <tr>
+                <td colspan="2">Organization: <b>@Model.Organizacija</b></td>
+            </tr>
+        <tr><td colspan="2">--------------------------------------------------------------------------------------------------------------</td></tr>
+            <tr>
+                <td>Registration Fee:</td><td align="right"><b>@Html.DisplayFor(model => model.Ucestvo,"Currency") @Model.Valuta</b></td>
+            </tr>
+       @*<tr><td colspan="2">--------------------------------------------------------------------------------------------------------------</td></tr>
+            <tr>
+                <td>Accommodation:</td><td align="right"><b>@Html.DisplayFor(model => model.Smestuvanje,"Currency") @Model.Valuta</b></td>
+            </tr>*@
+        <tr><td colspan="2">--------------------------------------------------------------------------------------------------------------</td></tr>
+            <tr>
+                <td>Social Event:</td><td align="right"><b>@Html.DisplayFor(model => model.NacVecera,"Currency") @Model.Valuta</b></td>
+            </tr>
+        
+        <tr><td colspan="2">--------------------------------------------------------------------------------------------------------------</td></tr>
+           <tr>
+                <td>Gala Dinner:</td><td align="right"><b>@Html.DisplayFor(model => model.DopoTrosoci,"Currency") @Model.Valuta</b></td>
+           </tr>
+        <tr><td colspan="2">--------------------------------------------------------------------------------------------------------------</td></tr>
+            <tr>
+               @{decimal total = 0;
+                <td >Total:</td><td align="right"><b>@{total = Model.Ucestvo + Model.Smestuvanje + Model.NacVecera + Model.DopoTrosoci;} @total.ToString("N2") @Model.Valuta</b></td>
+                }
+            </tr>
+        <tr><td colspan="2"><br /></td></tr>
+        <tr><td colspan="2"><br /></td></tr>
+        <tr><td colspan="2"><br /></td></tr>
+        <tr><td colspan="2"><br /></td></tr>
+        <tr><td colspan="2"><br /></td></tr>
+        <tr><td colspan="2"><br /></td></tr>
+        <tr><td colspan="2"><br /></td></tr>
+        <tr><td colspan="2"><br /></td></tr>
+        <tr><td colspan="2"><br /></td></tr>
+            <tr>
+                <td colspan="2" align="center">ISSUED:                                                                          PARTICIPANT:</td>
+            </tr>
+        <tr><td colspan="2"><br /></td></tr>
+            <tr>
+                <td colspan="2" align="left"> ________________                                                            _________________</td>
+            </tr>
+        <tr><td colspan="2"><br /></td></tr>
+        <tr><td colspan="2"><br /></td></tr>
+    </table>
+    <center>
+        <img src="@Context.Server.MapPath("~/Images/memorandum-newbottom.png")" width="520" height="70" />
+    </center>
+</body>
+</html>

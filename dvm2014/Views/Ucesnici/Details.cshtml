@@ -1,0 +1,169 @@
+﻿@model dvm2014.Models.Ucesnici
+
+@{
+    ViewBag.Title = "Детали";
+}
+<div class="container">
+<h2>Детали за учесникот</h2>
+
+<fieldset style="border: double; border-color:  deepskyblue; width:650px;">
+    <legend>Ucesnici</legend>
+    <table><tr >
+        <td style="padding-left:20px; padding-bottom:15px;">
+    <div class="display-label">
+         Име и презиме
+    </div>
+    <div class="display-field">
+       <b> @Html.DisplayFor(model => model.ImePrezime)</b>
+    </div>
+
+    <div class="display-label">
+         Организација
+    </div>
+    <div class="display-field">
+        <b> @Html.DisplayFor(model => model.Organizacija)</b>
+    </div>
+<div class="display-label">
+         Телефон
+    </div>
+    <div class="display-field">
+        <b> @Html.DisplayFor(model => model.Telefon)</b>
+    </div>
+    <div class="display-label">
+         Е-пошта
+    </div>
+    <div class="display-field">
+        <b> @Html.DisplayFor(model => model.Eposta)</b>
+    </div>
+
+    <div class="display-label">
+         Град
+    </div>
+    <div class="display-field">
+        <b> @Html.DisplayFor(model => model.Grad)</b>
+    </div>
+
+    <div class="display-label">
+         Држава
+    </div>
+    <div class="display-field">
+        <b> @Html.DisplayFor(model => model.Drzava)</b>
+    </div>
+
+    <div class="display-label">
+         Државјанин
+    </div>
+    <div class="display-field">
+         <b>@Html.DisplayFor(model => model.Drzavjanin)</b>
+    </div>
+</td>
+<td style="padding-left:30px; padding-top:30px; vertical-align:top;">
+    <div class="display-label">
+         Учество
+    </div>
+    <div class="display-field">
+        <b> @Html.DisplayFor(model => model.Ucestvo)</b>
+    </div>
+    <div class="display-label">
+         Сместување
+    </div>
+    <div class="display-field">
+        <b> @Html.DisplayFor(model => model.Smestuvanje)</b>
+    </div>
+     <div class="display-label">
+         Работилница
+    </div>
+    <div class="display-field">
+       <b>  @Html.DisplayFor(model => model.NacVecera)</b>
+    </div>
+    <div class="display-label">
+         Број ноќевања / Тип на соба
+    </div>
+    <div class="display-field">
+        <b> @Html.DisplayFor(model => model.Provizija)</b>
+    </div>
+    <div class="display-label">
+         Дополнителни трошоци
+    </div>
+    <div class="display-field">
+        <b> @Html.DisplayFor(model => model.DopoTrosoci)</b>
+    </div>
+    <div class="display-label" style="padding-top:10px;">
+        Валута
+    </div>
+    <div class="display-field">
+        <b>@Html.DisplayFor(model => model.Valuta)</b>
+    </div>
+    </td>
+    <td style="padding-left:30px; vertical-align:top; text-align:center;">
+        <div class="display-label">
+         <b>Начин на уплата</b>
+    </div>
+    <div class="display-field" style="padding-top:28px;">
+        @Html.DisplayFor(model => model.NacinUplata)
+    </div>
+    
+    
+    <div class="display-field" style="padding-top:20px;">
+        @Html.DisplayFor(model => model.NacinUplataS)
+    </div>
+
+   
+    <div class="display-field" style="padding-top:20px;">
+        @Html.DisplayFor(model => model.NacinUplataN)
+    </div>
+    
+    <div class="display-field" style="padding-top:20px;">
+        @Html.DisplayFor(model => model.NacinUplataP)
+    </div>
+        
+    <div class="display-field" style="padding-top:20px; padding-bottom:20px;">
+        @Html.DisplayFor(model => model.NacinUplataD)
+    </div>
+
+    
+@if ((Model.Pecateno) == "0")
+        {
+            <div class="display-label" style=" background-color:indianred; text-align:center; vertical-align:middle;">
+         Непечатено
+    </div>
+        }
+        else
+        {
+           <div class="display-label" style=" background-color:lightgreen; text-align:center; vertical-align:middle;">
+         Печатено
+    </div>
+        } 
+    
+      </td> 
+
+        <td style="padding-left:30px;  vertical-align:top;">
+            <div class="display-label">
+         <b>Забелешка</b>
+    </div>
+    <div class="display-field">
+        <b> @Html.DisplayFor(model => model.Zabeleska)</b>
+    </div>
+        </td>
+
+        <td style="padding-left:30px;  vertical-align:top; width:120px;">
+            <div class="display-label">
+         <b>Сертификат</b>
+    </div>
+    <div class="display-field" style="text-align:center;">
+        @if(Model.sertifikat == "0"){
+       <br /><p style="background-color:orange;"> Нема изработено</p>
+        }else{
+           <br /> <p style="background-color:lightgreen;">Има изработено</p>
+        }
+    </div>
+        </td>
+
+           </tr></table>
+</fieldset>
+<p style="padding-top:10px;">
+        @Html.ActionLink("Печати", "Print", new {id = Model.UcesnikID}, new {target="_blank", @class = "btn btn-success"})
+  &nbsp;@Html.ActionLink("Промени", "Edit", new { id = Model.UcesnikID }, new { @class = "btn btn-warning" })
+  &nbsp;@Html.ActionLink("Назад кон листа на учесници", "Index", null, new { @class = "btn btn-info" })
+</p>
+</div>

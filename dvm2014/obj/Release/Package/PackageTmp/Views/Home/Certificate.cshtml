@@ -1,0 +1,104 @@
+﻿
+@model  dvm2014.Models.SearchModel
+
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+
+@{
+    ViewBag.Title = "Сертификати";
+}
+
+<div class="container">
+<h2>Пребарување на учесници за изработка на сертификати.</h2>
+
+@using (Html.BeginForm("Certificate", "Home", FormMethod.Get))
+{
+
+    <p> 
+        UID: @Html.TextBox("SearchUID", null, new { @type = "number", @style = "width: 70px;" })&nbsp;&nbsp;
+        Име и презиме: @Html.TextBox("SearchString", null, new { @style = "width: 150px;" })&nbsp;&nbsp;
+
+         @{
+    List<SelectListItem> listItems = new List<SelectListItem>();
+    listItems.Add(new SelectListItem
+    {
+        Text = "Неизработени",
+        Value = "0"
+    });
+    listItems.Add(new SelectListItem
+    {
+        Text = "Изработени",
+        Value = "1"
+    });
+                }
+
+        Сертификати: @Html.DropDownList("searchPecateno", listItems, "Сите") &nbsp;&nbsp;
+        <input type="submit" value="Барај" style="width:100px; color:blue;" class="btn btn-success" />
+        </p>
+}
+<div class="datagrid">
+<table>
+<thead><tr><th></th><th>UID</th><th>Име и презиме</th><th>Организација</th><th>Држава</th><th>Забелешка</th><th>Статус</th><th>Сертификат</th></tr></thead>
+<tfoot><tr><td  colspan="8"><div id="paging">&nbsp;</div></td></tr></tfoot>
+
+<tbody>        
+@{
+       
+    int i = 0;
+             foreach (var item in Model.Ucesnici)
+             {
+     <tr>
+        <td>
+            @{i = i + 1;}
+            @i
+        </td>
+
+        <td style="background-color: Highlight;">
+            <b> @Html.DisplayFor(modelItem => item.UcesnikID)</b>
+        </td>
+
+       @*------------------*@
+    
+        <td style=" text-align:right; width: 200px;">
+          <b> @Html.DisplayFor(modelItem => item.ImePrezime)</b>
+        </td>
+        <td style=" text-align:right; width: 200px;">
+          <b> @Html.DisplayFor(modelItem => item.Organizacija)</b>
+        </td>
+        <td style=" text-align:right;">
+          <b> @Html.DisplayFor(modelItem => item.Drzava)</b>
+        </td>
+        <td style="text-align:right; width: 100px;">
+          <b> @Html.DisplayFor(modelItem => item.Zabeleska)</b>
+        </td>
+         
+        @if ((item.Pecateno) == "0")
+        {
+            <td style="background-color: indianred;">X
+            </td>
+        }
+        else
+        {
+            <td style="background-color: lightgreen;">&#10004;
+            </td>
+        } 
+         
+        @if ((item.sertifikat) == "0")
+        {
+            <td style="background-color: orange;"><b>X</b>
+                @Html.ActionLink("Промени", "Edit", new { id = item.UcesnikID, controller = "Home" }, new { @class = "btn btn-success" })
+            </td>
+        }
+        else
+        {
+            <td style="background-color: lightgreen;">&#10004;
+                @Html.ActionLink("Промени", "Edit", new { id = item.UcesnikID, controller = "Home" }, new { @class = "btn btn-warning" })
+            </td>
+        } 
+    </tr>
+    }        
+}
+</tbody>
+</table>
+</div>
+
+</div>

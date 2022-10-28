@@ -1,0 +1,2436 @@
+﻿@model  dvm2014.Models.SearchModel
+
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script>
+$(document).ready(function () {
+    $("#searchUplataSite").click(function () {
+            var checked = [];
+            if (this.checked == true) {
+                $("input[name='searchUplataUcestvo']:checked").each(function () {
+                    checked.push(parseInt($(this).val()));
+                });
+                $("input[name='searchUplataSmestuvanje']:checked").each(function () {
+                    checked.push(parseInt($(this).val()));
+                });
+                $("input[name='searchUplataNacVecera']:checked").each(function () {
+                    checked.push(parseInt($(this).val()));
+                });
+                $("input[name='searchUplataProvizija']:checked").each(function () {
+                    checked.push(parseInt($(this).val()));
+                });
+                $("input[name='searchUplataDopo']:checked").each(function () {
+                    checked.push(parseInt($(this).val()));
+                });
+            }
+            $("input[name='searchUplataUcestvo']").prop('checked', this.checked);
+            $("input[name='searchUplataSmestuvanje']").prop('checked', this.checked);
+            $("input[name='searchUplataNacVecera']").prop('checked', this.checked);
+            $("input[name='searchUplataProvizija']").prop('checked', this.checked);
+            $("input[name='searchUplataDopo']").prop('checked', this.checked);
+        });
+
+        $("input[name='searchUplataUcestvo']").click(function () {
+            $("input[name='searchUplataUcestvo']").each(function () {
+                if (this.checked == false) {
+                    checked.splice(parseInt($(this).val()));
+                } else {
+                    checked.push(parseInt($(this).val()));
+                }
+            });
+           
+        });
+
+        $("input[name='searchUplataSmestuvanje']").click(function () {
+            $("input[name='searchUplataSmestuvanje']").each(function () {
+                if (this.checked == false) {
+                    checked.splice(parseInt($(this).val()));
+                } else {
+                    checked.push(parseInt($(this).val()));
+                }
+            });
+
+        });
+
+        $("input[name='searchUplataNacVecera']").click(function () {
+            $("input[name='searchUplataNacVecera']").each(function () {
+                if (this.checked == false) {
+                    checked.splice(parseInt($(this).val()));
+                } else {
+                    checked.push(parseInt($(this).val()));
+                }
+            });
+
+        });
+
+        $("input[name='searchUplataProvizija']").click(function () {
+            $("input[name='searchUplataProvizija']").each(function () {
+                if (this.checked == false) {
+                    checked.splice(parseInt($(this).val()));
+                } else {
+                    checked.push(parseInt($(this).val()));
+                }
+            });
+
+        });
+
+        $("input[name='searchUplataDopo']").click(function () {
+            $("input[name='searchUplataDopo']").each(function () {
+                if (this.checked == false) {
+                    checked.splice(parseInt($(this).val()));
+                } else {
+                    checked.push(parseInt($(this).val()));
+                }
+            });
+
+        });
+
+});
+</script>
+
+@{
+    ViewBag.Title = "Пребарување";
+}
+<!DOCTYPE html>
+<div class="container">
+<h2>Пребарување на учесници за печатење.</h2>
+
+
+@using (Html.BeginForm("SearchIndex", "Ucesnici", FormMethod.Get))
+{
+    
+    <p>
+    @Html.ActionLink("Внеси нов учесник", "Create", null, new { @class = "btn btn-warning" }) &nbsp;
+    @Html.ActionLink("Назад кон листа на учесници", "Index", null, new { @class = "btn btn-info" }) &nbsp;
+</p>
+
+            <p> 
+              @*-  UID: @Html.TextBox("SearchUID", null, new { @type = "number", @style = "width: 60px;" })&nbsp;&nbsp; -*@
+                Име и презиме: @Html.TextBox("SearchString", null, new { @style = "width: 150px;" })&nbsp;&nbsp;
+
+            @{
+    List<SelectListItem> listItems = new List<SelectListItem>();
+    listItems.Add(new SelectListItem
+    {
+        Text = "Печатени",
+        Value = "1"
+    });
+    listItems.Add(new SelectListItem
+    {
+        Text = "Непечатени",
+        Value = "0"
+    });
+                }
+
+                Статус: @Html.DropDownList("searchPecateno", listItems, "Сите") &nbsp;&nbsp;
+
+                Валута: @Html.DropDownList("searchValuta", "Сите")&nbsp;&nbsp;
+
+                Државјанство: @Html.DropDownList("searchDrzavjanin", "Сите")
+                
+                
+               @* @Html.ActionLink("Печати", "Print2", null, new { @class="btn btn-success" })*@
+            </p>
+    
+            <table><tr style="border-bottom:groove;">
+                        <td style=" padding-bottom:5px;">
+                        <b>Уплата:</b>
+                       </td>
+                <td>@Html.CheckBox("searchUplataSite", false) Сите</td>
+                <td style="padding-left:20px;">@Html.CheckBox("searchUplataUcestvo", false) Учество</td>
+                <td style="padding-left:20px;">@Html.CheckBox("searchUplataSmestuvanje", false) Сместување</td>
+                <td style="padding-left:20px;">@Html.CheckBox("searchUplataNacVecera", false) Работилница</td>
+                <td style="padding-left:20px;">@Html.CheckBox("searchUplataProvizija", false) Број ноќи</td>
+                <td style="padding-left:20px;">@Html.CheckBox("searchUplataDopo", false) Дополнителни трошоци</td>
+
+                <td rowspan="2" style="padding-left:20px; text-align:center; vertical-align:middle;">
+                        <input type="submit" value="Барај" style="width:100px; color:blue;" class="btn btn-success" />
+                    </td>
+
+                </tr>
+                <tr><td style="padding-top:5px;">
+                    <b>Начин на уплата:</b>
+                    </td><td></td>
+                    <td style="padding-left:20px;">@Html.DropDownList("searchNacinUplata", "Сите")</td>
+                    <td style="padding-left:20px;">@Html.DropDownList("searchNacinUplataS", "Сите")</td>
+                    <td style="padding-left:20px;">@Html.DropDownList("searchNacinUplataN", "Сите")</td>
+                    <td style="padding-left:20px;">@Html.DropDownList("searchNacinUplataP", "Сите")</td>
+                    <td style="padding-left:20px;">@Html.DropDownList("searchNacinUplataD", "Сите")</td>                    
+  
+                    </tr></table>
+}
+    @{
+        decimal UcestvoMKD = @Model.Ucesnici.Where(x => (x.NacinUplata == "Vo gotovo") && (x.Valuta == "MKD")).Select(x => x.Ucestvo).Sum();
+        decimal SmestuvanjeMKD = @Model.Ucesnici.Where(x => (x.NacinUplataS == "Vo gotovo") && (x.Valuta == "MKD")).Select(x => x.Smestuvanje).Sum();
+        decimal NacVeceraMKD = @Model.Ucesnici.Where(x => (x.NacinUplataN == "Vo gotovo") && (x.Valuta == "MKD")).Select(x => x.NacVecera).Sum();
+        decimal ProvizijaMKD = @Model.Ucesnici.Where(x => (x.NacinUplataP == "Single Room") && (x.Valuta == "MKD")).Select(x => x.Provizija).Sum();
+        decimal DopoTrosociMKD = @Model.Ucesnici.Where(x => (x.NacinUplataD == "Vo gotovo") && (x.Valuta == "MKD")).Select(x => x.DopoTrosoci).Sum();
+
+        decimal UcestvoEUR = @Model.Ucesnici.Where(x => (x.NacinUplata == "Vo gotovo") && (x.Valuta == "EUR")).Select(x => x.Ucestvo).Sum();
+        decimal SmestuvanjeEUR = @Model.Ucesnici.Where(x => (x.NacinUplataS == "Vo gotovo") && (x.Valuta == "EUR")).Select(x => x.Smestuvanje).Sum();
+        decimal NacVeceraEUR = @Model.Ucesnici.Where(x => (x.NacinUplataN == "Vo gotovo") && (x.Valuta == "EUR")).Select(x => x.NacVecera).Sum();
+        decimal ProvizijaEUR = @Model.Ucesnici.Where(x => (x.NacinUplataP == "Single Room") && (x.Valuta == "EUR")).Select(x => x.Provizija).Sum();
+        decimal DopoTrosociEUR = @Model.Ucesnici.Where(x => (x.NacinUplataD == "Vo gotovo") && (x.Valuta == "EUR")).Select(x => x.DopoTrosoci).Sum();
+
+        decimal VUcestvoMKD = @Model.Ucesnici.Where(x => (x.NacinUplata == "So virman") && (x.Valuta == "MKD")).Select(x => x.Ucestvo).Sum();
+        decimal VSmestuvanjeMKD = @Model.Ucesnici.Where(x => (x.NacinUplataS == "So virman") && (x.Valuta == "MKD")).Select(x => x.Smestuvanje).Sum();
+        decimal VNacVeceraMKD = @Model.Ucesnici.Where(x => (x.NacinUplataN == "So virman") && (x.Valuta == "MKD")).Select(x => x.NacVecera).Sum();
+        decimal VProvizijaMKD = @Model.Ucesnici.Where(x => (x.NacinUplataP == "Double Room") && (x.Valuta == "MKD")).Select(x => x.Provizija).Sum();
+        decimal VDopoTrosociMKD = @Model.Ucesnici.Where(x => (x.NacinUplataD == "So virman") && (x.Valuta == "MKD")).Select(x => x.DopoTrosoci).Sum();
+
+        decimal VUcestvoEUR = @Model.Ucesnici.Where(x => (x.NacinUplata == "So virman") && (x.Valuta == "EUR")).Select(x => x.Ucestvo).Sum();
+        decimal VSmestuvanjeEUR = @Model.Ucesnici.Where(x => (x.NacinUplataS == "So virman") && (x.Valuta == "EUR")).Select(x => x.Smestuvanje).Sum();
+        decimal VNacVeceraEUR = @Model.Ucesnici.Where(x => (x.NacinUplataN == "So virman") && (x.Valuta == "EUR")).Select(x => x.NacVecera).Sum();
+        decimal VProvizijaEUR = @Model.Ucesnici.Where(x => (x.NacinUplataP == "Double Room") && (x.Valuta == "EUR")).Select(x => x.Provizija).Sum();
+        decimal VDopoTrosociEUR = @Model.Ucesnici.Where(x => (x.NacinUplataD == "So virman") && (x.Valuta == "EUR")).Select(x => x.DopoTrosoci).Sum();
+    }
+    <div class="datagrid">
+    <table>
+        <thead><tr><th style="text-align:center;">Уплата</th><th style="font-weight:bold; text-align:center;">Учество</th><th style="font-weight:bold;">Сместување</th><th style="font-weight:bold;">Работ.</th><!--<th style="font-weight:bold;">Ноќи</th>--><th style="font-weight:bold;">Допол.</th><th style="font-weight:bold; text-align:center">Вкупно</th><th style="font-weight:bold; text-align:center">Вкупно без п.</th><th style="font-weight:bold; text-align:center">Вкупно без д.</th><th style="font-weight:bold; text-align:center">Вкупно без п.д.</th></tr></thead>
+        <tr>
+            <td style="font-weight:bold; text-align:left; background-color:lightgreen;">МКД - Вкупно во готово</td>
+            <td style="font-weight:bold; text-align:right;">@UcestvoMKD.ToString("N2")</td>
+            <td style="font-weight:bold; text-align:right;">@SmestuvanjeMKD.ToString("N2")</td>
+            <td style="font-weight:bold; text-align:right;">@NacVeceraMKD.ToString("N2")</td>
+            <!--<td style="font-weight:bold; text-align:right;">@*ProvizijaMKD.ToString()*@</td>-->
+            <td style="font-weight:bold; text-align:right;">@DopoTrosociMKD.ToString("N2")</td>
+                @{decimal TotalMKD = 0;
+                    <td align="right"><b>@{TotalMKD = UcestvoMKD + SmestuvanjeMKD + NacVeceraMKD /*+ ProvizijaMKD*/ + DopoTrosociMKD;} @TotalMKD.ToString("N2") МКД</b></td>
+                }
+            @{decimal TotalMKDP = 0;
+                    <td align="right"><b>@{TotalMKDP = TotalMKD /*- ProvizijaMKD*/;} @TotalMKDP.ToString("N2") МКД</b></td>
+                }
+            @{decimal TotalMKDD = 0;
+                    <td align="right"><b>@{TotalMKDD = TotalMKD - DopoTrosociMKD;} @TotalMKDD.ToString("N2") МКД</b></td>
+                }
+            @{decimal TotalMKDPD = 0;
+                    <td align="right"><b>@{TotalMKDPD = TotalMKD /*- ProvizijaMKD*/ - DopoTrosociMKD;} @TotalMKDPD.ToString("N2") МКД</b></td>
+                }
+        </tr>
+        <tr>
+            <td style="font-weight:bold; text-align:left; background-color:lightgreen;">EUR - Вкупно во готово</td>
+            <td style="font-weight:bold; text-align:right;">@UcestvoEUR.ToString("N2")</td>
+            <td style="font-weight:bold; text-align:right;">@SmestuvanjeEUR.ToString("N2")</td>
+            <td style="font-weight:bold; text-align:right;">@NacVeceraEUR.ToString("N2")</td>
+            <!--<td style="font-weight:bold; text-align:right;">@*ProvizijaEUR.ToString()*@</td>-->
+            <td style="font-weight:bold; text-align:right;">@DopoTrosociEUR.ToString("N2")</td>
+                @{decimal TotalEUR = 0;
+                    <td align="right"><b>@{TotalEUR = UcestvoEUR + SmestuvanjeEUR + NacVeceraEUR /*+ ProvizijaEUR*/ + DopoTrosociEUR;} @TotalEUR.ToString("N2") EUR</b></td>
+                }
+            @{decimal TotalEURP = 0;
+                    <td align="right"><b>@{TotalEURP = TotalEUR /*- ProvizijaEUR*/;} @TotalEURP.ToString("N2") EUR</b></td>
+                }
+            @{decimal TotalEURD = 0;
+                    <td align="right"><b>@{TotalEURD = TotalEUR - DopoTrosociEUR;} @TotalEURD.ToString("N2") EUR</b></td>
+                }
+            @{decimal TotalEURPD = 0;
+                    <td align="right"><b>@{TotalEURPD = TotalEUR /*- ProvizijaEUR*/ - DopoTrosociEUR;} @TotalEURPD.ToString("N2") EUR</b></td>
+                }
+        </tr>
+
+        <tr>
+            <td style="font-weight:bold; text-align:left; background-color:orange;">МКД - Вкупно со вирман</td>
+            <td style="font-weight:bold; text-align:right;">@VUcestvoMKD.ToString("N2")</td>
+            <td style="font-weight:bold; text-align:right;">@VSmestuvanjeMKD.ToString("N2")</td>
+            <td style="font-weight:bold; text-align:right;">@VNacVeceraMKD.ToString("N2")</td>
+           <!-- <td style="font-weight:bold; text-align:right;">@*VProvizijaMKD.ToString()*@</td>-->
+            <td style="font-weight:bold; text-align:right;">@VDopoTrosociMKD.ToString("N2")</td>
+                @{decimal VTotalMKD = 0;
+                    <td align="right"><b>@{VTotalMKD = VUcestvoMKD + VSmestuvanjeMKD + VNacVeceraMKD + VDopoTrosociMKD;} @VTotalMKD.ToString("N2") МКД</b></td>
+                }
+            @{decimal VTotalMKDP = 0;
+                    <td align="right"><b>@{VTotalMKDP = VTotalMKD /*- VProvizijaMKD*/;} @VTotalMKDP.ToString("N2") МКД</b></td>
+                }
+            @{decimal VTotalMKDD = 0;
+                    <td align="right"><b>@{VTotalMKDD = VTotalMKD - VDopoTrosociMKD;} @VTotalMKDD.ToString("N2") МКД</b></td>
+                }
+            @{decimal VTotalMKDPD = 0;
+                    <td align="right"><b>@{VTotalMKDPD = VTotalMKD /*- VProvizijaMKD*/ - VDopoTrosociMKD;} @VTotalMKDPD.ToString("N2") МКД</b></td>
+                }
+        </tr>
+        <tr>
+            <td style="font-weight:bold; text-align:left; background-color:orange;">EUR - Вкупно со вирман</td>
+            <td style="font-weight:bold; text-align:right;">@VUcestvoEUR.ToString("N2")</td>
+            <td style="font-weight:bold; text-align:right;">@VSmestuvanjeEUR.ToString("N2")</td>
+            <td style="font-weight:bold; text-align:right;">@VNacVeceraEUR.ToString("N2")</td>
+           <!-- <td style="font-weight:bold; text-align:right;">@*VProvizijaEUR.ToString()*@</td>-->
+            <td style="font-weight:bold; text-align:right;">@VDopoTrosociEUR.ToString("N2")</td>
+                @{decimal VTotalEUR = 0;
+                    <td align="right"><b>@{VTotalEUR = VUcestvoEUR + VSmestuvanjeEUR + VNacVeceraEUR + /*VProvizijaEUR*/ + VDopoTrosociEUR;} @VTotalEUR.ToString("N2") EUR</b></td>
+                }
+            @{decimal VTotalEURP = 0;
+                    <td align="right"><b>@{VTotalEURP = VUcestvoEUR + VSmestuvanjeEUR + VNacVeceraEUR + VDopoTrosociEUR;} @VTotalEURP.ToString("N2") EUR</b></td>
+                }
+            @{decimal VTotalEURD = 0;
+                    <td align="right"><b>@{VTotalEURD = VUcestvoEUR + VSmestuvanjeEUR + VNacVeceraEUR /*+ VProvizijaEUR*/;} @VTotalEURD.ToString("N2") EUR</b></td>
+                }
+            @{decimal VTotalEURPD = 0;
+                    <td align="right"><b>@{VTotalEURPD = VUcestvoEUR + VSmestuvanjeEUR + VNacVeceraEUR;} @VTotalEURPD.ToString("N2") EUR</b></td>
+                }
+        </tr>
+    </table>
+    </div>
+    @*-----------------------------------------i kombinacija so 1 opcija--------------------------------------------------------*@
+         @if ((ViewData["Foo"]) == "u")
+         {
+             <div class="datagrid">
+            <table>
+   <thead><tr><th></th><th>Статус</th><th>Име и презиме</th><th>Учество</th><th>Упл.</th><th>Валута</th></tr></thead>
+<tfoot><tr>
+<td colspan="3"><div id="paging" style="font-weight:bold; text-align:center;">ВКУПНО:</div></td>
+<td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Ucestvo).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td>
+<td  colspan="3"><div id="paging">&nbsp;</div></td></tr></tfoot><tbody>        
+@{
+             int i = 0;
+             foreach (var item in Model.Ucesnici)
+             {
+    <tr>
+        <td>
+            @{i = i + 1;}
+            @i
+        </td>
+
+        @if ((item.Pecateno) == "0")
+        {
+            <td style="background-color: indianred;">X
+            </td>
+        }
+        else
+        {
+            <td style="background-color: lightgreen;">&#10004;
+            </td>
+        }
+    
+       <td>
+            @Html.ActionLink(item.ImePrezime, "Details", new { id = item.UcesnikID })
+        </td>
+        
+        
+        <td style="background-color: Highlight; text-align:right;">
+           <b> @Html.DisplayFor(modelItem => item.Ucestvo)</b>
+        </td>
+
+         @if ((item.NacinUplata) == "Neplateno")
+         {
+            <td style="background-color: indianred; font-weight:bold;">X
+            </td>
+         }
+         else if ((item.NacinUplata) == "Vo gotovo")
+         {
+            <td style="background-color: lightgreen; font-weight:bold;">Г
+            </td>
+         }
+         else if ((item.NacinUplata) == "So virman")
+         {
+            <td style="background-color: orange; font-weight:bold;">В
+            </td>
+         }        
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.Valuta)
+        </td>
+    </tr>
+             }
+}
+</tbody>
+</table></div>
+
+         }
+        @*---------------------------------------------------------------------------------------*@
+         else if ((ViewData["Foo"]) == "s")
+         {
+             <div class="datagrid"><table><thead><tr><th></th><th>Статус</th><th>Име и презиме</th><th>Сместување</th><th>Упл.</th><th>Валута</th></tr></thead><tfoot><tr><td colspan="2"><div id="paging" style="font-weight:bold; text-align:center;">ВКУПНО:</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Smestuvanje).Sum().00</div></td><td><div id="paging">&nbsp;</div></td><td><div id="paging">&nbsp;</div></td>
+</tr></tfoot><tbody>        
+@{
+             int i = 0;
+             foreach (var item in Model.Ucesnici)
+             {
+    <tr><td>
+            @{i = i + 1;}
+            @i
+        </td>
+        @if ((item.Pecateno) == "0")
+        {
+            <td style="background-color: indianred;">X</td>
+        }
+        else
+        {
+            <td style="background-color: lightgreen;">&#10004;</td>
+        } 
+       <td>@Html.ActionLink(item.ImePrezime, "Details", new { id = item.UcesnikID })</td> 
+        
+     
+        <td style="background-color: Highlight; text-align:right;"><b> @Html.DisplayFor(modelItem => item.Smestuvanje)</b></td>
+        @if ((item.NacinUplataS) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataS) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataS) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        }
+        
+        <td>@Html.DisplayFor(modelItem => item.Valuta)</td></tr>}
+}</tbody></table></div>
+
+         }
+         @*---------------------------------------------------------------------------------------*@
+         else if ((ViewData["Foo"]) == "n")
+         {
+         <div class="datagrid"><table><thead><tr><th></th><th>Статус</th><th>Име и презиме</th><th>Работ.</th><th>Упл.</th><th>Валута</th></tr></thead>
+             <tfoot><tr><td colspan="3"><div id="paging" style="font-weight:bold; text-align:center;">ВКУПНО:</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.NacVecera).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td>
+<td  colspan="3"><div id="paging">&nbsp;</div></td></tr></tfoot><tbody>        
+@{
+             int i = 0;
+             foreach (var item in Model.Ucesnici)
+             {
+    <tr><td>
+            @{i = i + 1;}
+            @i
+        </td>
+        @if ((item.Pecateno) == "0")
+        {
+            <td style="background-color: indianred;">X</td>
+        }
+        else
+        {
+            <td style="background-color: lightgreen;">&#10004;</td>
+        } 
+       <td>@Html.ActionLink(item.ImePrezime, "Details", new { id = item.UcesnikID })</td> 
+        
+        <td style="background-color: Highlight; text-align:right;"><b> @Html.DisplayFor(modelItem => item.NacVecera)</b></td>
+        @if ((item.NacinUplataN) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataN) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataN) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        }
+       
+        <td>@Html.DisplayFor(modelItem => item.Valuta)</td></tr>}
+}</tbody></table></div>
+         
+         }
+         @*---------------------------------------------------------------------------------------*@
+         else if ((ViewData["Foo"]) == "p")
+         {
+             <div class="datagrid"><table><thead><tr><th></th><th>Статус</th><th>Име и презиме</th><th>Ноќи</th><th>Соба</th><th>Валута</th></tr></thead><tfoot><tr><td colspan="3"><div id="paging" style="font-weight:bold; text-align:center;">ВКУПНО:</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Provizija).Sum().00</div></td>
+<td  colspan="3"><div id="paging">&nbsp;</div></td></tr></tfoot><tbody>        
+@{
+             int i = 0;
+             foreach (var item in Model.Ucesnici)
+             {
+    <tr><td>
+            @{i = i + 1;}
+            @i
+        </td>
+        @if ((item.Pecateno) == "0")
+        {
+            <td style="background-color: indianred;">X</td>
+        }
+        else
+        {
+            <td style="background-color: lightgreen;">&#10004;</td>
+        } 
+       <td>@Html.ActionLink(item.ImePrezime, "Details", new { id = item.UcesnikID })</td> 
+        <td style="background-color: Highlight; text-align:right;"><b> @Html.DisplayFor(modelItem => item.Provizija)</b></td>
+         @if ((item.NacinUplataP) == "Single Room")
+{
+    <td style="background-color: #d4e97e; font-weight:bold;">S
+    </td>
+}
+else if ((item.NacinUplataP) == "Double Room")
+{
+    <td style="background-color: #d697e9; font-weight:bold;">D
+    </td>
+}
+else if ((item.NacinUplataP) == "No Room")
+{
+    <td style="background-color: indianred; font-weight:bold;">X
+    </td>
+}
+        <td>@Html.DisplayFor(modelItem => item.Valuta)</td></tr>}
+}</tbody></table></div>
+
+         }
+         @*---------------------------------------------------------------------------------------*@
+         else if ((ViewData["Foo"]) == "d")
+         {
+             <div class="datagrid"><table><thead><tr><th></th><th>Статус</th><th>Име и презиме</th><th>Допол.</th><th>Упл.</th><th>Валута</th></tr></thead><tfoot><tr><td colspan="3"><div id="paging" style="font-weight:bold; text-align:center;">ВКУПНО:</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.DopoTrosoci).Sum().00</div></td>
+<td  colspan="3"><div id="paging">&nbsp;</div></td></tr></tfoot><tbody>        
+@{
+             int i = 0;
+             foreach (var item in Model.Ucesnici)
+             {
+    <tr><td>
+            @{i = i + 1;}
+            @i
+        </td>
+        @if ((item.Pecateno) == "0")
+        {
+            <td style="background-color: indianred;">X</td>
+        }
+        else
+        {
+            <td style="background-color: lightgreen;">&#10004;</td>
+        } 
+       <td>@Html.ActionLink(item.ImePrezime, "Details", new { id = item.UcesnikID })</td> 
+        <td style="background-color: Highlight; text-align:right;"><b> @Html.DisplayFor(modelItem => item.DopoTrosoci)</b></td>
+        @if ((item.NacinUplataD) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataD) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataD) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        } 
+        <td>@Html.DisplayFor(modelItem => item.Valuta)</td></tr>}
+}</tbody></table></div>
+
+         }
+         @*-----------------------------------------i kombinacija so 2 opcii----------------------------------------------*@
+         else if ((ViewData["Foo"]) == "us")
+         {
+             <div class="datagrid"><table><thead><tr><th></th><th>Статус</th><th>Име и презиме</th><th>Учество</th><th>Упл.</th><th>Сместување</th><th>Упл.</th><th>Валута</th></tr></thead><tfoot><tr><td colspan="3"><div id="paging" style="font-weight:bold; text-align:center;">СУМА:</div></td>
+<td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Ucestvo).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Smestuvanje).Sum().00</div></td>
+<td  colspan="3"><div id="paging">&nbsp;</div></td></tr></tfoot><tbody>        
+@{
+             int i = 0;
+             foreach (var item in Model.Ucesnici)
+             {
+    <tr><td>
+            @{i = i + 1;}
+            @i
+        </td>
+        @if ((item.Pecateno) == "0")
+        {
+            <td style="background-color: indianred;">X</td>
+        }
+        else
+        {
+            <td style="background-color: lightgreen;">&#10004;</td>
+        } 
+       <td>@Html.ActionLink(item.ImePrezime, "Details", new { id = item.UcesnikID })</td> 
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.Ucestvo)</b></td>
+
+         @if ((item.NacinUplata) == "Neplateno")
+         {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+         }
+         else if ((item.NacinUplata) == "Vo gotovo")
+         {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+         }
+         else if ((item.NacinUplata) == "So virman")
+         {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+         }       
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.Smestuvanje)</b></td>
+        @if ((item.NacinUplataS) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataS) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataS) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        }
+        <td>@Html.DisplayFor(modelItem => item.Valuta)</td></tr>}
+}</tbody></table></div>
+         }
+         @*---------------------------------------------------------------------------------------*@
+         else if ((ViewData["Foo"]) == "un")
+         {
+            <div class="datagrid"><table><thead><tr><th></th><th>Статус</th><th>Име и презиме</th><th>Учество</th><th>Упл.</th><th>Работ.</th><th>Упл.</th><th>Валута</th></tr></thead><tfoot><tr><td colspan="3"><div id="paging" style="font-weight:bold; text-align:center;">СУМА:</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Ucestvo).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.NacVecera).Sum().00</div></td>
+<td  colspan="3"><div id="paging">&nbsp;</div></td></tr></tfoot><tbody>        
+@{
+             int i = 0;
+             foreach (var item in Model.Ucesnici)
+             {
+    <tr><td>
+            @{i = i + 1;}
+            @i
+        </td>
+        @if ((item.Pecateno) == "0")
+        {
+            <td style="background-color: indianred;">X</td>
+        }
+        else
+        {
+            <td style="background-color: lightgreen;">&#10004;</td>
+        } 
+       <td>@Html.ActionLink(item.ImePrezime, "Details", new { id = item.UcesnikID })</td> 
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.Ucestvo)</b></td>
+
+         @if ((item.NacinUplata) == "Neplateno")
+         {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+         }
+         else if ((item.NacinUplata) == "Vo gotovo")
+         {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+         }
+         else if ((item.NacinUplata) == "So virman")
+         {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+         }
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.NacVecera)</b></td>
+        @if ((item.NacinUplataN) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataN) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataN) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        }
+        <td>@Html.DisplayFor(modelItem => item.Valuta)</td></tr>}
+}</tbody></table></div>
+         }
+         @*---------------------------------------------------------------------------------------*@
+         else if ((ViewData["Foo"]) == "up")
+         {
+             <div class="datagrid"><table><thead><tr><th></th><th>Статус</th><th>Име и презиме</th><th>Учество</th><th>Упл.</th><th>Ноќи</th><th>Соба</th><th>Валута</th></tr></thead><tfoot><tr><td colspan="3"><div id="paging" style="font-weight:bold; text-align:center;">СУМА:</div></td>
+<td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Ucestvo).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Provizija).Sum().00</div></td>
+<td  colspan="3"><div id="paging">&nbsp;</div></td></tr></tfoot><tbody>        
+@{
+             int i = 0;
+             foreach (var item in Model.Ucesnici)
+             {
+    <tr><td>
+            @{i = i + 1;}
+            @i
+        </td>
+        @if ((item.Pecateno) == "0")
+        {
+            <td style="background-color: indianred;">X</td>
+        }
+        else
+        {
+            <td style="background-color: lightgreen;">&#10004;</td>
+        } 
+       <td>@Html.ActionLink(item.ImePrezime, "Details", new { id = item.UcesnikID })</td> 
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.Ucestvo)</b></td>
+
+         @if ((item.NacinUplata) == "Neplateno")
+         {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+         }
+         else if ((item.NacinUplata) == "Vo gotovo")
+         {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+         }
+         else if ((item.NacinUplata) == "So virman")
+         {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+         }
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.Provizija)</b></td>
+        @if ((item.NacinUplataP) == "Single Room")
+{
+    <td style="background-color: #d4e97e; font-weight:bold;">
+        S
+    </td>
+}
+else if ((item.NacinUplataP) == "Double Room")
+{
+    <td style="background-color: #d697e9; font-weight:bold;">
+        D
+    </td>
+}
+else if ((item.NacinUplataP) == "No Room")
+{
+    <td style="background-color: indianred; font-weight:bold;">
+        X
+    </td>
+}
+        <td>@Html.DisplayFor(modelItem => item.Valuta)</td></tr>}
+}</tbody></table></div>
+         }
+         @*---------------------------------------------------------------------------------------*@
+         else if ((ViewData["Foo"]) == "ud")
+         {
+             <div class="datagrid"><table><thead><tr><th></th><th>Статус</th><th>Име и презиме</th><th>Учество</th><th>Упл.</th><th>Допол.</th><th>Упл.</th><th>Валута</th></tr></thead><tfoot><tr><td colspan="3"><div id="paging" style="font-weight:bold; text-align:center;">СУМА:</div></td>
+<td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Ucestvo).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.DopoTrosoci).Sum().00</div></td>
+<td  colspan="3"><div id="paging">&nbsp;</div></td></tr></tfoot><tbody>        
+@{
+             int i = 0;
+             foreach (var item in Model.Ucesnici)
+             {
+    <tr><td>
+            @{i = i + 1;}
+            @i
+        </td>
+        @if ((item.Pecateno) == "0")
+        {
+            <td style="background-color: indianred;">X</td>
+        }
+        else
+        {
+            <td style="background-color: lightgreen;">&#10004;</td>
+        } 
+       <td>@Html.ActionLink(item.ImePrezime, "Details", new { id = item.UcesnikID })</td> 
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.Ucestvo)</b></td>
+
+         @if ((item.NacinUplata) == "Neplateno")
+         {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+         }
+         else if ((item.NacinUplata) == "Vo gotovo")
+         {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+         }
+         else if ((item.NacinUplata) == "So virman")
+         {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+         }
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.DopoTrosoci)</b></td>
+        @if ((item.NacinUplataD) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataD) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataD) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        } 
+        <td>@Html.DisplayFor(modelItem => item.Valuta)</td></tr>}
+}</tbody></table></div>
+         }
+         @*---------------------------------------------------------------------------------------*@
+         else if ((ViewData["Foo"]) == "sn")
+         {
+             <div class="datagrid"><table><thead><tr><th></th><th>Статус</th><th>Име и презиме</th><th>Сместување</th><th>Упл.</th><th>Работ.</th><th>Упл.</th><th>Валута</th></tr></thead><tfoot><tr><td colspan="3"><div id="paging" style="font-weight:bold; text-align:center;">СУМА:</div></td>
+<td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Smestuvanje).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.NacVecera).Sum().00</div></td>
+<td  colspan="3"><div id="paging">&nbsp;</div></td></tr></tfoot><tbody>        
+@{
+             int i = 0;
+             foreach (var item in Model.Ucesnici)
+             {
+    <tr><td>
+            @{i = i + 1;}
+            @i
+        </td>
+        @if ((item.Pecateno) == "0")
+        {
+            <td style="background-color: indianred;">X</td>
+        }
+        else
+        {
+            <td style="background-color: lightgreen;">&#10004;</td>
+        } 
+       <td>@Html.ActionLink(item.ImePrezime, "Details", new { id = item.UcesnikID })</td>       
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.Smestuvanje)</b></td>
+        @if ((item.NacinUplataS) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataS) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataS) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        }
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.NacVecera)</b></td>
+        @if ((item.NacinUplataN) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataN) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataN) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        }
+        <td>@Html.DisplayFor(modelItem => item.Valuta)</td></tr>}
+}</tbody></table></div>
+         }
+         @*---------------------------------------------------------------------------------------*@
+         else if ((ViewData["Foo"]) == "sp")
+         {
+             <div class="datagrid"><table><thead><tr><th></th><th>Статус</th><th>Име и презиме</th><th>Сместување</th><th>Упл.</th><th>Ноќи</th><th>Соба</th><th>Валута</th></tr></thead><tfoot><tr><td colspan="3"><div id="paging" style="font-weight:bold; text-align:center;">СУМА:</div></td>
+<td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Smestuvanje).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Provizija).Sum().00</div></td>
+<td  colspan="3"><div id="paging">&nbsp;</div></td></tr></tfoot><tbody>        
+@{
+             int i = 0;
+             foreach (var item in Model.Ucesnici)
+             {
+    <tr><td>
+            @{i = i + 1;}
+            @i
+        </td>
+        @if ((item.Pecateno) == "0")
+        {
+            <td style="background-color: indianred;">X</td>
+        }
+        else
+        {
+            <td style="background-color: lightgreen;">&#10004;</td>
+        } 
+       <td>@Html.ActionLink(item.ImePrezime, "Details", new { id = item.UcesnikID })</td>      
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.Smestuvanje)</b></td>
+        @if ((item.NacinUplataS) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataS) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataS) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        }
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.Provizija)</b></td>
+        @if ((item.NacinUplataP) == "Single Room")
+{
+    <td style="background-color: #d4e97e; font-weight:bold;">
+        S
+    </td>
+}
+else if ((item.NacinUplataP) == "Double Room")
+{
+    <td style="background-color: #d697e9; font-weight:bold;">
+        D
+    </td>
+}
+else if ((item.NacinUplataP) == "No Room")
+{
+    <td style="background-color: indianred; font-weight:bold;">
+        X
+    </td>
+}
+        <td>@Html.DisplayFor(modelItem => item.Valuta)</td></tr>}
+}</tbody></table></div>
+         }
+         @*---------------------------------------------------------------------------------------*@
+         else if ((ViewData["Foo"]) == "sd")
+         {
+             <div class="datagrid"><table><thead><tr><th></th><th>Статус</th><th>Име и презиме</th><th>Сместување</th><th>Упл.</th><th>Допол.</th><th>Упл.</th><th>Валута</th></tr></thead><tfoot><tr><td colspan="3"><div id="paging" style="font-weight:bold; text-align:center;">СУМА:</div></td>
+<td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Smestuvanje).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.DopoTrosoci).Sum().00</div></td>
+<td  colspan="3"><div id="paging">&nbsp;</div></td></tr></tfoot><tbody>        
+@{
+             int i = 0;
+             foreach (var item in Model.Ucesnici)
+             {
+    <tr><td>
+            @{i = i + 1;}
+            @i
+        </td>
+        @if ((item.Pecateno) == "0")
+        {
+            <td style="background-color: indianred;">X</td>
+        }
+        else
+        {
+            <td style="background-color: lightgreen;">&#10004;</td>
+        } 
+       <td>@Html.ActionLink(item.ImePrezime, "Details", new { id = item.UcesnikID })</td> 
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.Smestuvanje)</b></td>
+        @if ((item.NacinUplataS) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataS) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataS) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        }
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.DopoTrosoci)</b></td>
+        @if ((item.NacinUplataD) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataD) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataD) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        } 
+        <td>@Html.DisplayFor(modelItem => item.Valuta)</td></tr>}
+}</tbody></table></div>
+         }
+         @*---------------------------------------------------------------------------------------*@
+         else if ((ViewData["Foo"]) == "np")
+         {
+           <div class="datagrid"><table><thead><tr><th></th><th>Статус</th><th>Име и презиме</th><th>Работ.</th><th>Упл.</th><th>Ноќи</th><th>Соба</th><th>Валута</th></tr></thead><tfoot><tr><td colspan="3"><div id="paging" style="font-weight:bold; text-align:center;">СУМА:</div></td>
+<td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.NacVecera).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Provizija).Sum().00</div></td>
+<td  colspan="3"><div id="paging">&nbsp;</div></td></tr></tfoot><tbody>        
+@{
+             int i = 0;
+             foreach (var item in Model.Ucesnici)
+             {
+    <tr><td>
+            @{i = i + 1;}
+            @i
+        </td>
+        @if ((item.Pecateno) == "0")
+        {
+            <td style="background-color: indianred;">X</td>
+        }
+        else
+        {
+            <td style="background-color: lightgreen;">&#10004;</td>
+        } 
+       <td>@Html.ActionLink(item.ImePrezime, "Details", new { id = item.UcesnikID })</td> 
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.NacVecera)</b></td>
+        @if ((item.NacinUplataN) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataN) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataN) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        }
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.Provizija)</b></td>
+        @if ((item.NacinUplataP) == "Single Room")
+{
+    <td style="background-color: #d4e97e; font-weight:bold;">
+        S
+    </td>
+}
+else if ((item.NacinUplataP) == "Double Room")
+{
+    <td style="background-color: #d697e9; font-weight:bold;">
+        D
+    </td>
+}
+else if ((item.NacinUplataP) == "No Room")
+{
+    <td style="background-color: indianred; font-weight:bold;">
+        X
+    </td>
+}
+        <td>@Html.DisplayFor(modelItem => item.Valuta)</td></tr>}
+}</tbody></table></div>
+         }
+         @*---------------------------------------------------------------------------------------*@
+         else if ((ViewData["Foo"]) == "nd")
+         {
+             <div class="datagrid"><table><thead><tr><th></th><th>Статус</th><th>Име и презиме</th><th>Работ.</th><th>Упл.</th><th>Допол.</th><th>Упл.</th><th>Валута</th></tr></thead><tfoot><tr><td colspan="3"><div id="paging" style="font-weight:bold; text-align:center;">СУМА:</div></td>
+<td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.NacVecera).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.DopoTrosoci).Sum().00</div></td>
+<td  colspan="3"><div id="paging">&nbsp;</div></td></tr></tfoot><tbody>        
+@{
+             int i = 0;
+             foreach (var item in Model.Ucesnici)
+             {
+    <tr><td>
+            @{i = i + 1;}
+            @i
+        </td>
+        @if ((item.Pecateno) == "0")
+        {
+            <td style="background-color: indianred;">X</td>
+        }
+        else
+        {
+            <td style="background-color: lightgreen;">&#10004;</td>
+        } 
+       <td>@Html.ActionLink(item.ImePrezime, "Details", new { id = item.UcesnikID })</td>
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.NacVecera)</b></td>
+        @if ((item.NacinUplataN) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataN) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataN) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        }
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.DopoTrosoci)</b></td>
+        @if ((item.NacinUplataD) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataD) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataD) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        } 
+        <td>@Html.DisplayFor(modelItem => item.Valuta)</td></tr>}
+}</tbody></table></div>
+         }
+         @*---------------------------------------------------------------------------------------*@
+         else if ((ViewData["Foo"]) == "pd")
+         {
+             <div class="datagrid"><table><thead><tr><th></th><th>Статус</th><th>Име и презиме</th><th>Ноќи</th><th>Соба</th><th>Допол.</th><th>Упл.</th><th>Валута</th></tr></thead><tfoot><tr><td colspan="3"><div id="paging" style="font-weight:bold; text-align:center;">СУМА:</div></td>
+<td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Provizija).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.DopoTrosoci).Sum().00</div></td>
+<td  colspan="3"><div id="paging">&nbsp;</div></td></tr></tfoot><tbody>        
+@{
+             int i = 0;
+             foreach (var item in Model.Ucesnici)
+             {
+    <tr><td>
+            @{i = i + 1;}
+            @i
+        </td>
+        @if ((item.Pecateno) == "0")
+        {
+            <td style="background-color: indianred;">X</td>
+        }
+        else
+        {
+            <td style="background-color: lightgreen;">&#10004;</td>
+        } 
+       <td>@Html.ActionLink(item.ImePrezime, "Details", new { id = item.UcesnikID })</td>
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.Provizija)</b></td>
+        @if ((item.NacinUplataP) == "Single Room")
+{
+    <td style="background-color: #d4e97e; font-weight:bold;">
+        S
+    </td>
+}
+else if ((item.NacinUplataP) == "Double Room")
+{
+    <td style="background-color: #d697e9; font-weight:bold;">
+        D
+    </td>
+}
+else if ((item.NacinUplataP) == "No Room")
+{
+    <td style="background-color: indianred; font-weight:bold;">
+        X
+    </td>
+}
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.DopoTrosoci)</b></td>
+        @if ((item.NacinUplataD) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataD) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataD) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        } 
+        <td>@Html.DisplayFor(modelItem => item.Valuta)</td></tr>}
+}</tbody></table></div>
+         }
+         @*----------------------------------i kombinacija so 3 opcii-----------------------------------------------------*@
+         else if ((ViewData["Foo"]) == "usn")
+         {
+             <div class="datagrid"><table><thead><tr><th></th><th>Статус</th><th>Име и презиме</th><th>Учество</th><th>Упл.</th><th>Сместување</th><th>Упл.</th><th>Работ.</th><th>Упл.</th><th>Валута</th></tr></thead><tfoot><tr><td colspan="3"><div id="paging" style="font-weight:bold; text-align:center;">СУМА:</div></td>
+<td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Ucestvo).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Smestuvanje).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.NacVecera).Sum().00</div></td>
+<td  colspan="3"><div id="paging">&nbsp;</div></td></tr></tfoot><tbody>        
+@{
+             int i = 0;
+             foreach (var item in Model.Ucesnici)
+             {
+    <tr><td>
+            @{i = i + 1;}
+            @i
+        </td>
+        @if ((item.Pecateno) == "0")
+        {
+            <td style="background-color: indianred;">X</td>
+        }
+        else
+        {
+            <td style="background-color: lightgreen;">&#10004;</td>
+        } 
+       <td>@Html.ActionLink(item.ImePrezime, "Details", new { id = item.UcesnikID })</td> 
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.Ucestvo)</b></td>
+
+         @if ((item.NacinUplata) == "Neplateno")
+         {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+         }
+         else if ((item.NacinUplata) == "Vo gotovo")
+         {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+         }
+         else if ((item.NacinUplata) == "So virman")
+         {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+         }       
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.Smestuvanje)</b></td>
+        @if ((item.NacinUplataS) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataS) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataS) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        }
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.NacVecera)</b></td>
+        @if ((item.NacinUplataN) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataN) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataN) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        }
+        <td>@Html.DisplayFor(modelItem => item.Valuta)</td></tr>}
+}</tbody></table></div>
+         }
+         @*-------------------------------------------------------------------------------------------------------*@
+         else if ((ViewData["Foo"]) == "usp")
+         {
+             <div class="datagrid"><table><thead><tr><th></th><th>Статус</th><th>Име и презиме</th><th>Учество</th><th>Упл.</th><th>Сместување</th><th>Упл.</th><th>Ноќи</th><th>Соба</th><th>Валута</th></tr></thead><tfoot><tr><td colspan="3"><div id="paging" style="font-weight:bold; text-align:center;">СУМА:</div></td>
+<td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Ucestvo).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Smestuvanje).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Provizija).Sum().00</div></td>
+<td  colspan="3"><div id="paging">&nbsp;</div></td></tr></tfoot><tbody>        
+@{
+             int i = 0;
+             foreach (var item in Model.Ucesnici)
+             {
+    <tr><td>
+            @{i = i + 1;}
+            @i
+        </td>
+        @if ((item.Pecateno) == "0")
+        {
+            <td style="background-color: indianred;">X</td>
+        }
+        else
+        {
+            <td style="background-color: lightgreen;">&#10004;</td>
+        } 
+       <td>@Html.ActionLink(item.ImePrezime, "Details", new { id = item.UcesnikID })</td> 
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.Ucestvo)</b></td>
+
+         @if ((item.NacinUplata) == "Neplateno")
+         {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+         }
+         else if ((item.NacinUplata) == "Vo gotovo")
+         {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+         }
+         else if ((item.NacinUplata) == "So virman")
+         {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+         }       
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.Smestuvanje)</b></td>
+        @if ((item.NacinUplataS) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataS) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataS) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        }
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.Provizija)</b></td>
+       @if ((item.NacinUplataP) == "Single Room")
+{
+    <td style="background-color: #d4e97e; font-weight:bold;">
+        S
+    </td>
+}
+else if ((item.NacinUplataP) == "Double Room")
+{
+    <td style="background-color: #d697e9; font-weight:bold;">
+        D
+    </td>
+}
+else if ((item.NacinUplataP) == "No Room")
+{
+    <td style="background-color: indianred; font-weight:bold;">
+        X
+    </td>
+}
+        <td>@Html.DisplayFor(modelItem => item.Valuta)</td></tr>}
+}</tbody></table></div>
+         }
+         @*-------------------------------------------------------------------------------------------------------*@
+         else if ((ViewData["Foo"]) == "usd")
+         {
+             <div class="datagrid"><table><thead><tr><th></th><th>Статус</th><th>Име и презиме</th><th>Учество</th><th>Упл.</th><th>Сместување</th><th>Упл.</th><th>Допол.</th><th>Упл.</th><th>Валута</th></tr></thead><tfoot><tr><td colspan="3"><div id="paging" style="font-weight:bold; text-align:center;">СУМА:</div></td>
+<td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Ucestvo).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Smestuvanje).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.DopoTrosoci).Sum().00</div></td>
+<td  colspan="3"><div id="paging">&nbsp;</div></td></tr></tfoot><tbody>        
+@{
+             int i = 0;
+             foreach (var item in Model.Ucesnici)
+             {
+    <tr><td>
+            @{i = i + 1;}
+            @i
+        </td>
+        @if ((item.Pecateno) == "0")
+        {
+            <td style="background-color: indianred;">X</td>
+        }
+        else
+        {
+            <td style="background-color: lightgreen;">&#10004;</td>
+        } 
+       <td>@Html.ActionLink(item.ImePrezime, "Details", new { id = item.UcesnikID })</td> 
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.Ucestvo)</b></td>
+
+         @if ((item.NacinUplata) == "Neplateno")
+         {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+         }
+         else if ((item.NacinUplata) == "Vo gotovo")
+         {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+         }
+         else if ((item.NacinUplata) == "So virman")
+         {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+         }       
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.Smestuvanje)</b></td>
+        @if ((item.NacinUplataS) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataS) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataS) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        }
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.DopoTrosoci)</b></td>
+        @if ((item.NacinUplataD) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataD) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataD) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        } 
+        <td>@Html.DisplayFor(modelItem => item.Valuta)</td></tr>}
+}</tbody></table></div>
+         }
+         @*-------------------------------------------------------------------------------------------------------*@
+         else if ((ViewData["Foo"]) == "unp")
+         {
+             <div class="datagrid"><table><thead><tr><th></th><th>Статус</th><th>Име и презиме</th><th>Учество</th><th>Упл.</th><th>Работ</th><th>Упл.</th><th>Ноќи</th><th>Соба</th><th>Валута</th></tr></thead><tfoot><tr><td colspan="3"><div id="paging" style="font-weight:bold; text-align:center;">СУМА:</div></td>
+<td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Ucestvo).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.NacVecera).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Provizija).Sum().00</div></td>
+<td  colspan="3"><div id="paging">&nbsp;</div></td></tr></tfoot><tbody>        
+@{
+             int i = 0;
+             foreach (var item in Model.Ucesnici)
+             {
+    <tr><td>
+            @{i = i + 1;}
+            @i
+        </td>
+        @if ((item.Pecateno) == "0")
+        {
+            <td style="background-color: indianred;">X</td>
+        }
+        else
+        {
+            <td style="background-color: lightgreen;">&#10004;</td>
+        } 
+       <td>@Html.ActionLink(item.ImePrezime, "Details", new { id = item.UcesnikID })</td> 
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.Ucestvo)</b></td>
+
+         @if ((item.NacinUplata) == "Neplateno")
+         {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+         }
+         else if ((item.NacinUplata) == "Vo gotovo")
+         {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+         }
+         else if ((item.NacinUplata) == "So virman")
+         {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+         }
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.NacVecera)</b></td>
+        @if ((item.NacinUplataN) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataN) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataN) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        }
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.Provizija)</b></td>
+         @if ((item.NacinUplataP) == "Single Room")
+{
+    <td style="background-color: #d4e97e; font-weight:bold;">
+        S
+    </td>
+}
+else if ((item.NacinUplataP) == "Double Room")
+{
+    <td style="background-color: #d697e9; font-weight:bold;">
+        D
+    </td>
+}
+else if ((item.NacinUplataP) == "No Room")
+{
+    <td style="background-color: indianred; font-weight:bold;">
+        X
+    </td>
+}
+        <td>@Html.DisplayFor(modelItem => item.Valuta)</td></tr>}
+}</tbody></table></div>
+         }
+         @*-------------------------------------------------------------------------------------------------------*@
+         else if ((ViewData["Foo"]) == "und")
+         {
+             <div class="datagrid"><table><thead><tr><th></th><th>Статус</th><th>Име и презиме</th><th>Учество</th><th>Упл.</th><th>Работ.</th><th>Упл.</th><th>Допол.</th><th>Упл.</th><th>Валута</th></tr></thead><tfoot><tr><td colspan="3"><div id="paging" style="font-weight:bold; text-align:center;">СУМА:</div></td>
+<td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Ucestvo).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.NacVecera).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.DopoTrosoci).Sum().00</div></td>
+<td  colspan="3"><div id="paging">&nbsp;</div></td></tr></tfoot><tbody>        
+@{
+             int i = 0;
+             foreach (var item in Model.Ucesnici)
+             {
+    <tr><td>
+            @{i = i + 1;}
+            @i
+        </td>
+        @if ((item.Pecateno) == "0")
+        {
+            <td style="background-color: indianred;">X</td>
+        }
+        else
+        {
+            <td style="background-color: lightgreen;">&#10004;</td>
+        } 
+       <td>@Html.ActionLink(item.ImePrezime, "Details", new { id = item.UcesnikID })</td> 
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.Ucestvo)</b></td>
+
+         @if ((item.NacinUplata) == "Neplateno")
+         {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+         }
+         else if ((item.NacinUplata) == "Vo gotovo")
+         {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+         }
+         else if ((item.NacinUplata) == "So virman")
+         {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+         }  
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.NacVecera)</b></td>
+        @if ((item.NacinUplataN) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataN) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataN) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        }
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.DopoTrosoci)</b></td>
+        @if ((item.NacinUplataD) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataD) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataD) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        } 
+        <td>@Html.DisplayFor(modelItem => item.Valuta)</td></tr>}
+}</tbody></table></div>
+         }
+         @*-------------------------------------------------------------------------------------------------------*@
+         else if ((ViewData["Foo"]) == "upd")
+         {
+             <div class="datagrid"><table><thead><tr><th></th><th>Статус</th><th>Име и презиме</th><th>Учество</th><th>Упл.</th><th>Ноќи</th><th>Соба</th><th>Допол.</th><th>Упл.</th><th>Валута</th></tr></thead><tfoot><tr><td colspan="3"><div id="paging" style="font-weight:bold; text-align:center;">СУМА:</div></td>
+<td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Ucestvo).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Provizija).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.DopoTrosoci).Sum().00</div></td>
+<td  colspan="3"><div id="paging">&nbsp;</div></td></tr></tfoot><tbody>        
+@{
+             int i = 0;
+             foreach (var item in Model.Ucesnici)
+             {
+    <tr><td>
+            @{i = i + 1;}
+            @i
+        </td>
+        @if ((item.Pecateno) == "0")
+        {
+            <td style="background-color: indianred;">X</td>
+        }
+        else
+        {
+            <td style="background-color: lightgreen;">&#10004;</td>
+        } 
+       <td>@Html.ActionLink(item.ImePrezime, "Details", new { id = item.UcesnikID })</td> 
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.Ucestvo)</b></td>
+
+         @if ((item.NacinUplata) == "Neplateno")
+         {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+         }
+         else if ((item.NacinUplata) == "Vo gotovo")
+         {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+         }
+         else if ((item.NacinUplata) == "So virman")
+         {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+         } 
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.Provizija)</b></td>
+        @if ((item.NacinUplataP) == "Single Room")
+{
+    <td style="background-color: #d4e97e; font-weight:bold;">
+        S
+    </td>
+}
+else if ((item.NacinUplataP) == "Double Room")
+{
+    <td style="background-color: #d697e9; font-weight:bold;">
+        D
+    </td>
+}
+else if ((item.NacinUplataP) == "No Room")
+{
+    <td style="background-color: indianred; font-weight:bold;">
+        X
+    </td>
+}
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.DopoTrosoci)</b></td>
+        @if ((item.NacinUplataD) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataD) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataD) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        } 
+        <td>@Html.DisplayFor(modelItem => item.Valuta)</td></tr>}
+}</tbody></table></div>
+         }
+         @*-------------------------------------------------------------------------------------------------------*@
+         else if ((ViewData["Foo"]) == "snp")
+         {
+             <div class="datagrid"><table><thead><tr><th></th><th>Статус</th><th>Име и презиме</th><th>Сместување</th><th>Упл.</th><th>Работ.</th><th>Упл.</th><th>Ноќи</th><th>Соба</th><th>Валута</th></tr></thead><tfoot><tr><td colspan="3"><div id="paging" style="font-weight:bold; text-align:center;">СУМА:</div></td>
+<td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Smestuvanje).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.NacVecera).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Provizija).Sum().00</div></td>
+<td  colspan="3"><div id="paging">&nbsp;</div></td></tr></tfoot><tbody>        
+@{
+             int i = 0;
+             foreach (var item in Model.Ucesnici)
+             {
+    <tr><td>
+            @{i = i + 1;}
+            @i
+        </td>
+        @if ((item.Pecateno) == "0")
+        {
+            <td style="background-color: indianred;">X</td>
+        }
+        else
+        {
+            <td style="background-color: lightgreen;">&#10004;</td>
+        } 
+       <td>@Html.ActionLink(item.ImePrezime, "Details", new { id = item.UcesnikID })</td>    
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.Smestuvanje)</b></td>
+        @if ((item.NacinUplataS) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataS) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataS) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        }
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.NacVecera)</b></td>
+        @if ((item.NacinUplataN) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataN) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataN) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        }
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.Provizija)</b></td>
+        @if ((item.NacinUplataP) == "Single Room")
+{
+    <td style="background-color: #d4e97e; font-weight:bold;">
+        S
+    </td>
+}
+else if ((item.NacinUplataP) == "Double Room")
+{
+    <td style="background-color: #d697e9; font-weight:bold;">
+        D
+    </td>
+}
+else if ((item.NacinUplataP) == "No Room")
+{
+    <td style="background-color: indianred; font-weight:bold;">
+        X
+    </td>
+}
+        <td>@Html.DisplayFor(modelItem => item.Valuta)</td></tr>}
+}</tbody></table></div>
+         }
+         @*-------------------------------------------------------------------------------------------------------*@
+         else if ((ViewData["Foo"]) == "snd")
+         {
+             <div class="datagrid"><table><thead><tr><th></th><th>Статус</th><th>Име и презиме</th><th>Сместување</th><th>Упл.</th><th>Работ.</th><th>Упл.</th><th>Допол.</th><th>Упл.</th><th>Валута</th></tr></thead><tfoot><tr><td colspan="3"><div id="paging" style="font-weight:bold; text-align:center;">СУМА:</div></td>
+<td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Smestuvanje).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.NacVecera).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.DopoTrosoci).Sum().00</div></td>
+<td  colspan="3"><div id="paging">&nbsp;</div></td></tr></tfoot><tbody>        
+@{
+             int i = 0;
+             foreach (var item in Model.Ucesnici)
+             {
+    <tr><td>
+            @{i = i + 1;}
+            @i
+        </td>
+        @if ((item.Pecateno) == "0")
+        {
+            <td style="background-color: indianred;">X</td>
+        }
+        else
+        {
+            <td style="background-color: lightgreen;">&#10004;</td>
+        } 
+       <td>@Html.ActionLink(item.ImePrezime, "Details", new { id = item.UcesnikID })</td>      
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.Smestuvanje)</b></td>
+        @if ((item.NacinUplataS) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataS) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataS) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        }
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.NacVecera)</b></td>
+        @if ((item.NacinUplataN) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataN) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataN) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        }
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.DopoTrosoci)</b></td>
+        @if ((item.NacinUplataD) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataD) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataD) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        } 
+        <td>@Html.DisplayFor(modelItem => item.Valuta)</td></tr>}
+}</tbody></table></div>
+         }
+         @*-------------------------------------------------------------------------------------------------------*@
+         else if ((ViewData["Foo"]) == "spd")
+         {
+             <div class="datagrid"><table><thead><tr><th></th><th>Статус</th><th>Име и презиме</th><th>Сместување</th><th>Упл.</th><th>Ноќи</th><th>Соба</th><th>Допол.</th><th>Упл.</th><th>Валута</th></tr></thead><tfoot><tr><td colspan="3"><div id="paging" style="font-weight:bold; text-align:center;">СУМА:</div></td>
+<td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Smestuvanje).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Provizija).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.DopoTrosoci).Sum().00</div></td>
+<td  colspan="3"><div id="paging">&nbsp;</div></td></tr></tfoot><tbody>        
+@{
+             int i = 0;
+             foreach (var item in Model.Ucesnici)
+             {
+    <tr><td>
+            @{i = i + 1;}
+            @i
+        </td>
+        @if ((item.Pecateno) == "0")
+        {
+            <td style="background-color: indianred;">X</td>
+        }
+        else
+        {
+            <td style="background-color: lightgreen;">&#10004;</td>
+        } 
+       <td>@Html.ActionLink(item.ImePrezime, "Details", new { id = item.UcesnikID })</td>      
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.Smestuvanje)</b></td>
+        @if ((item.NacinUplataS) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataS) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataS) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        }
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.Provizija)</b></td>
+        @if ((item.NacinUplataP) == "Single Room")
+{
+    <td style="background-color: #d4e97e; font-weight:bold;">
+        S
+    </td>
+}
+else if ((item.NacinUplataP) == "Double Room")
+{
+    <td style="background-color: #d697e9; font-weight:bold;">
+        D
+    </td>
+}
+else if ((item.NacinUplataP) == "No Room")
+{
+    <td style="background-color: indianred; font-weight:bold;">
+        X
+    </td>
+}
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.DopoTrosoci)</b></td>
+        @if ((item.NacinUplataD) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataD) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataD) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        } 
+        <td>@Html.DisplayFor(modelItem => item.Valuta)</td></tr>}
+}</tbody></table></div>
+         }
+         @*-------------------------------------------------------------------------------------------------------*@
+         else if ((ViewData["Foo"]) == "npd")
+         {
+             <div class="datagrid"><table><thead><tr><th></th><th>Статус</th><th>Име и презиме</th><th>Работ.</th><th>Упл.</th><th>Ноќи</th><th>Соба</th><th>Допол.</th><th>Упл.</th><th>Валута</th></tr></thead><tfoot><tr><td colspan="3"><div id="paging" style="font-weight:bold; text-align:center;">СУМА:</div></td>
+<td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.NacVecera).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Provizija).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.DopoTrosoci).Sum().00</div></td>
+<td  colspan="3"><div id="paging">&nbsp;</div></td></tr></tfoot><tbody>        
+@{
+             int i = 0;
+             foreach (var item in Model.Ucesnici)
+             {
+    <tr><td>
+            @{i = i + 1;}
+            @i
+        </td>
+        @if ((item.Pecateno) == "0")
+        {
+            <td style="background-color: indianred;">X</td>
+        }
+        else
+        {
+            <td style="background-color: lightgreen;">&#10004;</td>
+        } 
+       <td>@Html.ActionLink(item.ImePrezime, "Details", new { id = item.UcesnikID })</td>
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.NacVecera)</b></td>
+        @if ((item.NacinUplataN) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataN) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataN) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        }
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.Provizija)</b></td>
+        @if ((item.NacinUplataP) == "Single Room")
+{
+    <td style="background-color: #d4e97e; font-weight:bold;">
+        S
+    </td>
+}
+else if ((item.NacinUplataP) == "Double Room")
+{
+    <td style="background-color: #d697e9; font-weight:bold;">
+        D
+    </td>
+}
+else if ((item.NacinUplataP) == "No Room")
+{
+    <td style="background-color: indianred; font-weight:bold;">
+        X
+    </td>
+}
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.DopoTrosoci)</b></td>
+        @if ((item.NacinUplataD) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataD) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataD) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        } 
+        <td>@Html.DisplayFor(modelItem => item.Valuta)</td></tr>}
+}</tbody></table></div>
+         }
+         @*----------------------------------i kombinacija so 4 opcii----------------------------------------------------*@
+         else if ((ViewData["Foo"]) == "usnp")
+         {
+             <div class="datagrid"><table><thead><tr><th></th><th>Статус</th><th>Име и презиме</th><th>Учество</th><th>Упл.</th><th>Сместување</th><th>Упл.</th><th>Работ.</th><th>Упл.</th><th>Ноќи</th><th>Соба</th><th>Валута</th></tr></thead><tfoot><tr><td colspan="3"><div id="paging" style="font-weight:bold; text-align:center;">СУМА:</div></td>
+<td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Ucestvo).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Smestuvanje).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.NacVecera).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Provizija).Sum().00</div></td>
+<td  colspan="3"><div id="paging">&nbsp;</div></td></tr></tfoot><tbody>        
+@{
+             int i = 0;
+             foreach (var item in Model.Ucesnici)
+             {
+    <tr><td>
+            @{i = i + 1;}
+            @i
+        </td>
+        @if ((item.Pecateno) == "0")
+        {
+            <td style="background-color: indianred;">X</td>
+        }
+        else
+        {
+            <td style="background-color: lightgreen;">&#10004;</td>
+        } 
+       <td>@Html.ActionLink(item.ImePrezime, "Details", new { id = item.UcesnikID })</td> 
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.Ucestvo)</b></td>
+
+         @if ((item.NacinUplata) == "Neplateno")
+         {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+         }
+         else if ((item.NacinUplata) == "Vo gotovo")
+         {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+         }
+         else if ((item.NacinUplata) == "So virman")
+         {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+         }       
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.Smestuvanje)</b></td>
+        @if ((item.NacinUplataS) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataS) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataS) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        }
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.NacVecera)</b></td>
+        @if ((item.NacinUplataN) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataN) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataN) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        }
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.Provizija)</b></td>
+        @if ((item.NacinUplataP) == "Single Room")
+{
+    <td style="background-color: #d4e97e; font-weight:bold;">
+        S
+    </td>
+}
+else if ((item.NacinUplataP) == "Double Room")
+{
+    <td style="background-color: #d697e9; font-weight:bold;">
+        D
+    </td>
+}
+else if ((item.NacinUplataP) == "No Room")
+{
+    <td style="background-color: indianred; font-weight:bold;">
+        X
+    </td>
+}
+        <td>@Html.DisplayFor(modelItem => item.Valuta)</td></tr>}
+}</tbody></table></div>
+         }
+         @*----------------------------------i kombinacija so 4 opcii----------------------------------------------------*@
+         else if ((ViewData["Foo"]) == "usnd")
+         {
+             <div class="datagrid"><table><thead><tr><th></th><th>Статус</th><th>Име и презиме</th><th>Учество</th><th>Упл.</th><th>Сместување</th><th>Упл.</th><th>Работ.</th><th>Упл.</th><th>Допол.</th><th>Упл.</th><th>Валута</th></tr></thead><tfoot><tr><td colspan="3"><div id="paging" style="font-weight:bold; text-align:center;">СУМА:</div></td>
+<td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Ucestvo).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Smestuvanje).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.NacVecera).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.DopoTrosoci).Sum().00</div></td>
+<td  colspan="3"><div id="paging">&nbsp;</div></td></tr></tfoot><tbody>        
+@{
+             int i = 0;
+             foreach (var item in Model.Ucesnici)
+             {
+    <tr><td>
+            @{i = i + 1;}
+            @i
+        </td>
+        @if ((item.Pecateno) == "0")
+        {
+            <td style="background-color: indianred;">X</td>
+        }
+        else
+        {
+            <td style="background-color: lightgreen;">&#10004;</td>
+        } 
+       <td>@Html.ActionLink(item.ImePrezime, "Details", new { id = item.UcesnikID })</td> 
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.Ucestvo)</b></td>
+
+         @if ((item.NacinUplata) == "Neplateno")
+         {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+         }
+         else if ((item.NacinUplata) == "Vo gotovo")
+         {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+         }
+         else if ((item.NacinUplata) == "So virman")
+         {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+         }       
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.Smestuvanje)</b></td>
+        @if ((item.NacinUplataS) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataS) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataS) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        }
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.NacVecera)</b></td>
+        @if ((item.NacinUplataN) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataN) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataN) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        }
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.DopoTrosoci)</b></td>
+        @if ((item.NacinUplataD) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataD) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataD) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        } 
+        <td>@Html.DisplayFor(modelItem => item.Valuta)</td></tr>}
+}</tbody></table></div>
+         }
+         @*----------------------------------i kombinacija so 4 opcii----------------------------------------------------*@
+         else if ((ViewData["Foo"]) == "unpd")
+         {
+             <div class="datagrid"><table><thead><tr><th></th><th>Статус</th><th>Име и презиме</th><th>Учество</th><th>Упл.</th><th>Работ.</th><th>Упл.</th><th>Ноќи</th><th>Соба</th><th>Допол.</th><th>Упл.</th><th>Валута</th></tr></thead><tfoot><tr><td colspan="3"><div id="paging" style="font-weight:bold; text-align:center;">СУМА:</div></td>
+<td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Ucestvo).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.NacVecera).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Provizija).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.DopoTrosoci).Sum().00</div></td>
+<td  colspan="3"><div id="paging">&nbsp;</div></td></tr></tfoot><tbody>        
+@{
+             int i = 0;
+             foreach (var item in Model.Ucesnici)
+             {
+    <tr><td>
+            @{i = i + 1;}
+            @i
+        </td>
+        @if ((item.Pecateno) == "0")
+        {
+            <td style="background-color: indianred;">X</td>
+        }
+        else
+        {
+            <td style="background-color: lightgreen;">&#10004;</td>
+        } 
+       <td>@Html.ActionLink(item.ImePrezime, "Details", new { id = item.UcesnikID })</td> 
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.Ucestvo)</b></td>
+
+         @if ((item.NacinUplata) == "Neplateno")
+         {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+         }
+         else if ((item.NacinUplata) == "Vo gotovo")
+         {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+         }
+         else if ((item.NacinUplata) == "So virman")
+         {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+         } 
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.NacVecera)</b></td>
+        @if ((item.NacinUplataN) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataN) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataN) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        }
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.Provizija)</b></td>
+        @if ((item.NacinUplataP) == "Single Room")
+{
+    <td style="background-color: #d4e97e; font-weight:bold;">
+        S
+    </td>
+}
+else if ((item.NacinUplataP) == "Double Room")
+{
+    <td style="background-color: #d697e9; font-weight:bold;">
+        D
+    </td>
+}
+else if ((item.NacinUplataP) == "No Room")
+{
+    <td style="background-color: indianred; font-weight:bold;">
+        X
+    </td>
+}
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.DopoTrosoci)</b></td>
+        @if ((item.NacinUplataD) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataD) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataD) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        } 
+        <td>@Html.DisplayFor(modelItem => item.Valuta)</td></tr>}
+}</tbody></table></div>
+         }
+         @*----------------------------------i kombinacija so 4 opcii----------------------------------------------------*@
+         else if ((ViewData["Foo"]) == "snpd")
+         {
+             <div class="datagrid"><table><thead><tr><th></th><th>Статус</th><th>Име и презиме</th><th>Сместување</th><th>Упл.</th><th>Работ.</th><th>Упл.</th><th>Ноќи</th><th>Соба</th><th>Допол.</th><th>Упл.</th><th>Валута</th></tr></thead><tfoot><tr><td colspan="3"><div id="paging" style="font-weight:bold; text-align:center;">СУМА:</div></td>
+<td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Smestuvanje).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.NacVecera).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Provizija).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.DopoTrosoci).Sum().00</div></td>
+<td  colspan="3"><div id="paging">&nbsp;</div></td></tr></tfoot><tbody>        
+@{
+             int i = 0;
+             foreach (var item in Model.Ucesnici)
+             {
+    <tr><td>
+            @{i = i + 1;}
+            @i
+        </td>
+        @if ((item.Pecateno) == "0")
+        {
+            <td style="background-color: indianred;">X</td>
+        }
+        else
+        {
+            <td style="background-color: lightgreen;">&#10004;</td>
+        } 
+       <td>@Html.ActionLink(item.ImePrezime, "Details", new { id = item.UcesnikID })</td>  
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.Smestuvanje)</b></td>
+        @if ((item.NacinUplataS) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataS) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataS) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        }
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.NacVecera)</b></td>
+        @if ((item.NacinUplataN) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataN) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataN) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        }
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.Provizija)</b></td>
+        @if ((item.NacinUplataP) == "Single Room")
+{
+    <td style="background-color: #d4e97e; font-weight:bold;">
+        S
+    </td>
+}
+else if ((item.NacinUplataP) == "Double Room")
+{
+    <td style="background-color: #d697e9; font-weight:bold;">
+        D
+    </td>
+}
+else if ((item.NacinUplataP) == "No Room")
+{
+    <td style="background-color: indianred; font-weight:bold;">
+        X
+    </td>
+}
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.DopoTrosoci)</b></td>
+        @if ((item.NacinUplataD) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataD) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataD) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        } 
+        <td>@Html.DisplayFor(modelItem => item.Valuta)</td></tr>}
+}</tbody></table></div>
+         }
+         @*----------------------------------i kombinacija so 4 opcii----------------------------------------------------*@
+         else if ((ViewData["Foo"]) == "uspd")
+         {
+             <div class="datagrid"><table><thead><tr><th></th><th>Статус</th><th>Име и презиме</th><th>Учество</th><th>Упл.</th><th>Сместување</th><th>Упл.</th><th>Ноќи</th><th>Соба</th><th>Допол.</th><th>Упл.</th><th>Валута</th></tr></thead><tfoot><tr><td colspan="3"><div id="paging" style="font-weight:bold; text-align:center;">СУМА:</div></td>
+<td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Ucestvo).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Smestuvanje).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Provizija).Sum().00</div></td>
+<td ><div id="paging">&nbsp;</div></td><td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.DopoTrosoci).Sum().00</div></td>
+<td  colspan="3"><div id="paging">&nbsp;</div></td></tr></tfoot><tbody>        
+@{
+             int i = 0;
+             foreach (var item in Model.Ucesnici)
+             {
+    <tr><td>
+            @{i = i + 1;}
+            @i
+        </td>
+        @if ((item.Pecateno) == "0")
+        {
+            <td style="background-color: indianred;">X</td>
+        }
+        else
+        {
+            <td style="background-color: lightgreen;">&#10004;</td>
+        } 
+       <td>@Html.ActionLink(item.ImePrezime, "Details", new { id = item.UcesnikID })</td> 
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.Ucestvo)</b></td>
+
+         @if ((item.NacinUplata) == "Neplateno")
+         {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+         }
+         else if ((item.NacinUplata) == "Vo gotovo")
+         {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+         }
+         else if ((item.NacinUplata) == "So virman")
+         {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+         }       
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.Smestuvanje)</b></td>
+        @if ((item.NacinUplataS) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataS) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataS) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        }
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.Provizija)</b></td>
+       @if ((item.NacinUplataP) == "Single Room")
+{
+    <td style="background-color: #d4e97e; font-weight:bold;">
+        S
+    </td>
+}
+else if ((item.NacinUplataP) == "Double Room")
+{
+    <td style="background-color: #d697e9; font-weight:bold;">
+        D
+    </td>
+}
+else if ((item.NacinUplataP) == "No Room")
+{
+    <td style="background-color: indianred; font-weight:bold;">
+        X
+    </td>
+}
+
+        <td style="background-color: Highlight;"><b> @Html.DisplayFor(modelItem => item.DopoTrosoci)</b></td>
+        @if ((item.NacinUplataD) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X</td>
+        }
+        else if ((item.NacinUplataD) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г</td>
+        }
+        else if ((item.NacinUplataD) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В</td>
+        } 
+        <td>@Html.DisplayFor(modelItem => item.Valuta)</td></tr>}
+}</tbody></table></div>
+         }
+         @*----------------------------------krajno i kombinacija so site opcii-----------------------------------------------------*@
+         else
+         { 
+<div class="datagrid">
+<table>
+   <thead> <tr>
+       <th >
+            
+        </th> 
+       <th>
+           UID
+       </th>
+       
+        <th>
+            Име и презиме
+        </th>
+        
+        <th>
+            Учество
+        </th>
+       <th>
+            Упл.
+        </th>
+        <th>
+            Сместување
+        </th>
+       <th>
+            Упл.
+        </th>
+        <th>
+            Работ.
+        </th>
+       <th>
+            Упл.
+        </th>
+        <th>
+            Ноќи
+        </th>
+        <th>
+            Соба
+        </th>
+       <th>
+            Допол.
+        </th>
+        <th>
+            Упл.
+        </th>
+        <th>
+            Валута
+        </th>
+       <th>
+            Статус
+        </th>
+    </tr>
+</thead>
+    <tfoot><tr>
+        <td colspan="3"><div id="paging" style="font-weight:bold; text-align:center;">ВКУПНО:</div></td>
+        
+        <td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Ucestvo).Sum().00</div></td>
+        <td ><div id="paging">&nbsp;</div></td>
+        <td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Smestuvanje).Sum().00</div></td>
+        <td ><div id="paging">&nbsp;</div></td>
+        <td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.NacVecera).Sum().00</div></td>
+        <td ><div id="paging">&nbsp;</div></td>
+        <td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.Provizija).Sum().00</div></td>
+        <td ><div id="paging">&nbsp;</div></td>
+        <td ><div id="paging" style="font-weight:bold;"> @Model.Ucesnici.Select(x => x.DopoTrosoci).Sum().00</div></td>
+        <td  colspan="3"><div id="paging">&nbsp;</div></td>
+           </tr></tfoot>
+
+    <tbody>
+        
+@{
+             int i = 0;
+             foreach (var item in Model.Ucesnici)
+             {
+    <tr>
+        <td>
+            @{i = i + 1;}
+            @i
+        </td>
+
+        <td>
+            <b> @Html.DisplayFor(modelItem => item.UcesnikID)</b>
+        </td>
+
+       @*------------------*@
+    
+       <td>
+            @Html.ActionLink(item.ImePrezime, "Details", new { id = item.UcesnikID })
+        </td>
+        
+        
+        <td style="background-color: Highlight; text-align:right;">
+           <b> @Html.DisplayFor(modelItem => item.Ucestvo)</b>
+        </td>
+
+         @if ((item.NacinUplata) == "Neplateno")
+         {
+            <td style="background-color: indianred; font-weight:bold;">X
+            </td>
+         }
+         else if ((item.NacinUplata) == "Vo gotovo")
+         {
+            <td style="background-color: lightgreen; font-weight:bold;">Г
+            </td>
+         }
+         else if ((item.NacinUplata) == "So virman")
+         {
+            <td style="background-color: orange; font-weight:bold;">В
+            </td>
+         } 
+
+        @*<td>
+            @Html.DisplayFor(modelItem => item.NacinUplata)
+        </td>*@
+        
+        <td style="background-color: Highlight; text-align:right;">
+            <b> @Html.DisplayFor(modelItem => item.Smestuvanje)</b>
+        </td>
+        @if ((item.NacinUplataS) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X
+            </td>
+        }
+        else if ((item.NacinUplataS) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г
+            </td>
+        }
+        else if ((item.NacinUplataS) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В
+            </td>
+        } 
+        @*<td>
+            @Html.DisplayFor(modelItem => item.NacinUplataS)
+        </td>*@
+        <td style="background-color: Highlight; text-align:right;">
+          <b> @Html.DisplayFor(modelItem => item.NacVecera)</b>
+        </td>
+        @if ((item.NacinUplataN) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X
+            </td>
+        }
+        else if ((item.NacinUplataN) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г
+            </td>
+        }
+        else if ((item.NacinUplataN) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В
+            </td>
+        } 
+        @*<td>
+            @Html.DisplayFor(modelItem => item.NacinUplataN)
+        </td>*@
+        <td style="background-color: Highlight; text-align:right;">
+            <b> @Html.DisplayFor(modelItem => item.Provizija)</b>
+        </td>
+       @if ((item.NacinUplataP) == "Single Room")
+{
+    <td style="background-color: #d4e97e; font-weight:bold;">
+        S
+    </td>
+}
+else if ((item.NacinUplataP) == "Double Room")
+{
+    <td style="background-color: #d697e9; font-weight:bold;">
+        D
+    </td>
+}
+else if ((item.NacinUplataP) == "No Room")
+{
+    <td style="background-color: indianred; font-weight:bold;">
+        X
+    </td>
+}
+        @*<td>
+            @Html.DisplayFor(modelItem => item.NacinUplataP)
+        </td>*@
+        <td style="background-color: Highlight; text-align:right;">
+            <b> @Html.DisplayFor(modelItem => item.DopoTrosoci)</b>
+        </td>
+        @if ((item.NacinUplataD) == "Neplateno")
+        {
+            <td style="background-color: indianred; font-weight:bold;">X
+            </td>
+        }
+        else if ((item.NacinUplataD) == "Vo gotovo")
+        {
+            <td style="background-color: lightgreen; font-weight:bold;">Г
+            </td>
+        }
+        else if ((item.NacinUplataD) == "So virman")
+        {
+            <td style="background-color: orange; font-weight:bold;">В
+            </td>
+        } 
+        <td>
+            @Html.DisplayFor(modelItem => item.Valuta)
+        </td>
+        
+         @if ((item.Pecateno) == "0")
+        {
+            <td style="background-color: indianred;">X
+            </td>
+        }
+        else
+        {
+            <td style="background-color: lightgreen;">&#10004;
+            </td>
+        }
+
+    </tr>
+             }
+}
+        </tbody>
+
+</table>
+
+
+</div>
+         }
+
+</div>

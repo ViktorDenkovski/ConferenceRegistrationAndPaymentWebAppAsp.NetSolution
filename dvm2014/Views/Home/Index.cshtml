@@ -1,0 +1,28 @@
+﻿@model  dvm2014.Models.Ucesnici
+
+@{
+    ViewBag.Title = "Почетна административна страна";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+            
+                <table><tr><td>
+                     <h2>Ресетирање на базата со податоци. <br /> Порамнување на сите суми на "0" и <br /> сите уплати на "Неплатено". </h2>
+                           </td><td style="padding-left:150px;">
+                                 @Html.ActionLink("Ресетирај база", "IndexReset", null, new { @class = "btn btn-danger" })
+                                </td></tr></table>
+               
+                
+          
+        </div>
+    </section>
+}
+<div class="container">
+
+
+</div>

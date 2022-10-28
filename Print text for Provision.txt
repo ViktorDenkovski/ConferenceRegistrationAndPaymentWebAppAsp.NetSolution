@@ -1,0 +1,4 @@
+<tr><td colspan="2">--------------------------------------------------------------------------------------------------------------</td></tr>
+            <tr>
+                <td>Bank transfer costs:</td><td align="right"><b>@Html.DisplayFor(model => model.Provizija,"Currency") @Model.Valuta</b></td>
+            </tr>

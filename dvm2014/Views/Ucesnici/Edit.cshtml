@@ -1,0 +1,231 @@
+﻿@model dvm2014.Models.Ucesnici
+
+@{
+    ViewBag.Title = "Промена";
+}
+<div class="container">
+<h2>Промена на учесник</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Ucesnici</legend>
+<table><tr><td style="width:320px">
+        
+        @Html.HiddenFor(model => model.UcesnikID)
+
+        <div class="editor-label">
+            Име и презиме:
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ImePrezime)
+            @Html.ValidationMessageFor(model => model.ImePrezime)
+        </div>
+
+        <div class="editor-label">
+            Организација:
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Organizacija)
+            @Html.ValidationMessageFor(model => model.Organizacija)
+        </div>
+        
+        <div class="editor-label">
+            Телефон:
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Telefon)
+            @Html.ValidationMessageFor(model => model.Telefon)
+        </div>
+
+        <div class="editor-label">
+            Е-пошта:
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Eposta)
+            @Html.ValidationMessageFor(model => model.Eposta)
+        </div>
+
+        <div class="editor-label">
+            Град:
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Grad)
+            @Html.ValidationMessageFor(model => model.Grad)
+        </div>
+
+        <div class="editor-label">
+            Држава:
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Drzava)
+            @Html.ValidationMessageFor(model => model.Drzava)
+        </div>
+    <table><tr><td>
+         <div class="editor-label">
+            Државјанство:
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Drzavjanin", new List <SelectListItem>{
+                new SelectListItem{ Text = "Македонец", Value = "Makedonec"},
+                new SelectListItem{ Text = "Странец", Value = "Stranec"}       
+               })
+            @Html.ValidationMessageFor(model => model.Drzavjanin)
+        </div>
+        </td></tr></table>
+         </td><td style="width:320px; vertical-align:top;">
+        <div class="editor-label">
+            Учество:
+        </div>
+        <div class="editor-field">
+            @{int ucestvo; ucestvo = Model.Ucestvo;}
+            @Html.TextBoxFor(model => model.Ucestvo, new { @Value = ucestvo })
+            @Html.ValidationMessageFor(model => model.Smestuvanje)
+        </div>
+
+        <div class="editor-label">
+            Сместување:
+        </div>
+        <div class="editor-field">
+             @{int smestuvanje; smestuvanje = Model.Smestuvanje;}
+            @Html.TextBoxFor(model => model.Smestuvanje, new { @Value = smestuvanje })
+            @Html.ValidationMessageFor(model => model.Smestuvanje)
+        </div>
+
+        <div class="editor-label">
+            Работилница:
+        </div>
+        <div class="editor-field">
+            @{int nacvecera; nacvecera = Model.NacVecera;}
+            @Html.TextBoxFor(model => model.NacVecera, new { @Value = nacvecera })
+            @Html.ValidationMessageFor(model => model.NacVecera)
+        </div>
+
+        <div class="editor-label">
+            Број ноќевања / Тип на соба:
+        </div>
+        <div class="editor-field">
+            @{int provizija; provizija = Model.Provizija;}
+            @Html.TextBoxFor(model => model.Provizija, new { @Value = provizija })
+            @Html.ValidationMessageFor(model => model.Provizija)
+        </div>
+
+         <div class="editor-label">
+            Дополнителни трошоци:
+        </div>
+        <div class="editor-field">
+            @{int dopotrosoci; dopotrosoci = Model.DopoTrosoci;}
+            @Html.TextBoxFor(model => model.DopoTrosoci, new { @Value = dopotrosoci })
+            @Html.ValidationMessageFor(model => model.DopoTrosoci)
+        </div>
+
+             <div class="editor-label">
+            Забелешка:
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Zabeleska)
+            @Html.ValidationMessageFor(model => model.Zabeleska)
+        </div>
+              <table><tr><td>
+        <div class="editor-label"  style="padding-top:2px;">
+            Валута:
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Valuta", new List <SelectListItem>{
+                new SelectListItem{ Text = "MKD", Value = "MKD"},
+                new SelectListItem{ Text = "EUR", Value = "EUR"}       
+               })
+            @Html.ValidationMessageFor(model => model.Valuta)
+        </div>
+      </td>      
+<td style="padding-left:20px;">
+        <div class="editor-label"  style="padding-top:2px;">
+            Статус:
+        </div>
+        <div class="editor-field">
+             @Html.DropDownList("Pecateno", new List <SelectListItem>{
+                new SelectListItem{ Text = "Печатено", Value = "1"},
+                new SelectListItem{ Text = "Непечатено", Value = "0"}       
+               })
+            @Html.ValidationMessageFor(model => model.Pecateno)
+        </div>
+    </td>
+    </tr>
+</table>
+</td>
+    <td style="vertical-align:top;">
+        
+        <div class="editor-label"  >
+            Начин на уплата:
+        </div>
+
+        <div class="editor-field" style="padding-top:2px;">
+             @Html.DropDownList("NacinUplata", new List <SelectListItem>{
+                new SelectListItem{ Text = "Во готово", Value = "Vo gotovo"},
+                new SelectListItem{ Text = "Со вирман", Value = "So virman"},
+                new SelectListItem{ Text = "Неплатено", Value = "Neplateno"}        
+               })
+            @Html.ValidationMessageFor(model => model.NacinUplata)
+        </div>
+
+        <div class="editor-field" style="padding-top:33px;">
+             @Html.DropDownList("NacinUplataS", new List <SelectListItem>{
+                new SelectListItem{ Text = "Во готово", Value = "Vo gotovo"},
+                new SelectListItem{ Text = "Со вирман", Value = "So virman"},
+                new SelectListItem{ Text = "Неплатено", Value = "Neplateno"}         
+               })
+            @Html.ValidationMessageFor(model => model.NacinUplata)
+        </div>
+
+        <div class="editor-field" style="padding-top:33px;">
+             @Html.DropDownList("NacinUplataN", new List <SelectListItem>{
+                new SelectListItem{ Text = "Во готово", Value = "Vo gotovo"},
+                new SelectListItem{ Text = "Со вирман", Value = "So virman"},
+                new SelectListItem{ Text = "Неплатено", Value = "Neplateno"}        
+               })
+            @Html.ValidationMessageFor(model => model.NacinUplata)
+        </div>
+
+        <div class="editor-field" style="padding-top:33px;">
+             @Html.DropDownList("NacinUplataP", new List <SelectListItem>{
+                new SelectListItem{ Text = "Без спиење", Value = "No Room"},
+                new SelectListItem{ Text = "SingleRoom", Value = "Single Room"},
+                new SelectListItem{ Text = "DoubleRoom", Value = "Double Room"}        
+               })
+            @Html.ValidationMessageFor(model => model.NacinUplata)
+        </div>
+
+        <div class="editor-field" style="padding-top:33px;">
+             @Html.DropDownList("NacinUplataD", new List <SelectListItem>{
+                new SelectListItem{ Text = "Во готово", Value = "Vo gotovo"},
+                new SelectListItem{ Text = "Со вирман", Value = "So virman"},
+                new SelectListItem{ Text = "Неплатено", Value = "Neplateno"}        
+               })
+            @Html.ValidationMessageFor(model => model.NacinUplata)
+        </div>
+        <div class="editor-field" style="padding-top:25px;">
+        <input type="submit" value="Зачувај" style="width:100px; color:darkorange;" class="btn btn-danger" formtarget="_blank" />
+        &nbsp;@Html.ActionLink("Внеси нов учесник", "Create", null, new { @class="btn btn-warning" })        
+        </div>
+        <div class="editor-field" style="padding-top:20px; text-align:center">
+        @Html.ActionLink("Назад кон листа на учесници", "SearchIndex", null, new { @class = "btn btn-info" })
+            </div>
+
+        </td>
+    </tr>
+   
+        </table>
+
+        <div class="editor-field" style="visibility:hidden;">
+            @Html.EditorFor(model => model.sertifikat)
+            @Html.ValidationMessageFor(model => model.sertifikat)
+        </div>
+
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+</div>

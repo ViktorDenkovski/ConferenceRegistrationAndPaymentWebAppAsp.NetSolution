@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "За нас";
+}
+<div class="container">
+<hgroup class="title">
+    <h1>@ViewBag.Title.<br /></h1>
+    <h2>@ViewBag.Message</h2>
+</hgroup>
+
+<article>
+    <table>
+        <tr>
+            <td>
+                <p>
+                    <img class="img-rounded" style="width:120px" src="~/Images/me11.jpg" />
+                </p>
+            </td>
+            <td style="padding-left:30px;">
+                <p>
+                    Име: <b>Виктор</b><br />
+                    Презиме: <b>Денковски</b><br />
+                    Град: <b>Куманово</b><br />
+                    Улица: <b>„Матеја Матевски“ бр. 22-1, 1000 Скопје, Р. Македонија</b><br />
+                    Е-mail: <b>viktor.denkovski@gmail.com </b><br />
+                    Skype: <b>v.denkovski</b><br />
+                    Linkedin профил: <b>http://www.linkedin.com/pub/viktor-denkovski/18/b9/762</b>
+                </p>
+                 </td>
+            </tr>
+   <tr>
+       <td>
+
+       </td>
+       <td>
+           <p>
+                    Факултет за ветеринарна медицина Скопје<br />
+                    <b>Советник за ИКТ</b><br />
+                    18.01.2010 – <br />
+         
+       </td>
+   </tr>
+                
+       
+    </table>
+</article>
+
+<aside>
+    <h3>Вработен на:</h3>
+    <p>
+        Факултетот за ветеринарна медицина - Скопје
+    </p>
+    <ul>
+        <li>@Html.ActionLink("Регистрација", "Index", "Ucesnici")</li>
+        <li>@Html.ActionLink("За нас", "About", "Home")</li>
+        <li>@Html.ActionLink("Контакт", "Contact", "Home")</li>
+    </ul>
+      <img src="~/Images/ukim.gif" width="60px" height="60px" />&nbsp;
+      <img src="~/Images/fvms.gif" width="60px" height="60px" />
+</aside>
+    </div>

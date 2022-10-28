@@ -1,0 +1,160 @@
+c:\Webs\DVM2014\dvm2014\bin\dvm2014.dll
+c:\Webs\DVM2014\dvm2014\bin\dvm2014.pdb
+c:\Webs\DVM2014\dvm2014\bin\Antlr3.Runtime.dll
+c:\Webs\DVM2014\dvm2014\bin\DotNetOpenAuth.AspNet.dll
+c:\Webs\DVM2014\dvm2014\bin\DotNetOpenAuth.Core.dll
+c:\Webs\DVM2014\dvm2014\bin\DotNetOpenAuth.OAuth.Consumer.dll
+c:\Webs\DVM2014\dvm2014\bin\DotNetOpenAuth.OAuth.dll
+c:\Webs\DVM2014\dvm2014\bin\DotNetOpenAuth.OpenId.dll
+c:\Webs\DVM2014\dvm2014\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+c:\Webs\DVM2014\dvm2014\bin\EntityFramework.dll
+c:\Webs\DVM2014\dvm2014\bin\itextsharp.dll
+c:\Webs\DVM2014\dvm2014\bin\Microsoft.Web.Infrastructure.dll
+c:\Webs\DVM2014\dvm2014\bin\Microsoft.Web.WebPages.OAuth.dll
+c:\Webs\DVM2014\dvm2014\bin\Newtonsoft.Json.dll
+c:\Webs\DVM2014\dvm2014\bin\PagedList.dll
+c:\Webs\DVM2014\dvm2014\bin\PagedList.Mvc.dll
+c:\Webs\DVM2014\dvm2014\bin\RazorPDF.dll
+c:\Webs\DVM2014\dvm2014\bin\System.Net.Http.Formatting.dll
+c:\Webs\DVM2014\dvm2014\bin\System.Web.Helpers.dll
+c:\Webs\DVM2014\dvm2014\bin\System.Web.Http.dll
+c:\Webs\DVM2014\dvm2014\bin\System.Web.Http.WebHost.dll
+c:\Webs\DVM2014\dvm2014\bin\System.Web.Mvc.dll
+c:\Webs\DVM2014\dvm2014\bin\System.Web.Optimization.dll
+c:\Webs\DVM2014\dvm2014\bin\System.Web.Razor.dll
+c:\Webs\DVM2014\dvm2014\bin\System.Web.WebPages.Deployment.dll
+c:\Webs\DVM2014\dvm2014\bin\System.Web.WebPages.dll
+c:\Webs\DVM2014\dvm2014\bin\System.Web.WebPages.Razor.dll
+c:\Webs\DVM2014\dvm2014\bin\WebGrease.dll
+c:\Webs\DVM2014\dvm2014\bin\WebMatrix.Data.dll
+c:\Webs\DVM2014\dvm2014\bin\WebMatrix.WebData.dll
+c:\Webs\DVM2014\dvm2014\bin\PagedList.xml
+c:\Webs\DVM2014\dvm2014\bin\PagedList.Mvc.xml
+c:\Webs\DVM2014\dvm2014\bin\EntityFramework.xml
+c:\Webs\DVM2014\dvm2014\bin\Newtonsoft.Json.xml
+c:\Webs\DVM2014\dvm2014\bin\System.Net.Http.Formatting.xml
+c:\Webs\DVM2014\dvm2014\bin\System.Web.Helpers.xml
+c:\Webs\DVM2014\dvm2014\bin\System.Web.Http.xml
+c:\Webs\DVM2014\dvm2014\bin\System.Web.Http.WebHost.xml
+c:\Webs\DVM2014\dvm2014\bin\System.Web.Mvc.xml
+c:\Webs\DVM2014\dvm2014\bin\System.Web.Razor.xml
+c:\Webs\DVM2014\dvm2014\bin\System.Web.WebPages.xml
+c:\Webs\DVM2014\dvm2014\bin\System.Web.WebPages.Deployment.xml
+c:\Webs\DVM2014\dvm2014\bin\System.Web.WebPages.Razor.xml
+c:\Webs\DVM2014\dvm2014\bin\WebMatrix.Data.xml
+c:\Webs\DVM2014\dvm2014\bin\Microsoft.Web.WebPages.OAuth.xml
+c:\Webs\DVM2014\dvm2014\bin\WebMatrix.WebData.xml
+c:\Webs\DVM2014\dvm2014\bin\DotNetOpenAuth.AspNet.xml
+c:\Webs\DVM2014\dvm2014\bin\DotNetOpenAuth.Core.xml
+c:\Webs\DVM2014\dvm2014\bin\DotNetOpenAuth.OAuth.Consumer.xml
+c:\Webs\DVM2014\dvm2014\bin\DotNetOpenAuth.OAuth.xml
+c:\Webs\DVM2014\dvm2014\bin\DotNetOpenAuth.OpenId.xml
+c:\Webs\DVM2014\dvm2014\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+c:\Webs\DVM2014\dvm2014\obj\Release\dvm2014.csprojResolveAssemblyReference.cache
+c:\Webs\DVM2014\dvm2014\obj\Release\dvm2014.dll
+c:\Webs\DVM2014\dvm2014\obj\Release\dvm2014.pdb
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\dvm2014.dll
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\dvm2014.pdb
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\Antlr3.Runtime.dll
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\DotNetOpenAuth.AspNet.dll
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\DotNetOpenAuth.Core.dll
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\DotNetOpenAuth.OAuth.Consumer.dll
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\DotNetOpenAuth.OAuth.dll
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\DotNetOpenAuth.OpenId.dll
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\EntityFramework.dll
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\itextsharp.dll
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\Microsoft.Web.WebPages.OAuth.dll
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\Newtonsoft.Json.dll
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\PagedList.dll
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\PagedList.Mvc.dll
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\RazorPDF.dll
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\System.Web.Helpers.dll
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\System.Web.Mvc.dll
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\System.Web.Optimization.dll
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\System.Web.Razor.dll
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\System.Web.WebPages.dll
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\System.Web.WebPages.Razor.dll
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\WebGrease.dll
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\WebMatrix.Data.dll
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\WebMatrix.WebData.dll
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\PagedList.xml
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\PagedList.Mvc.xml
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\EntityFramework.xml
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\Newtonsoft.Json.xml
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\System.Web.Helpers.xml
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\System.Web.Mvc.xml
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\System.Web.Razor.xml
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\System.Web.WebPages.xml
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\System.Web.WebPages.Razor.xml
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\WebMatrix.Data.xml
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\Microsoft.Web.WebPages.OAuth.xml
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\WebMatrix.WebData.xml
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\DotNetOpenAuth.AspNet.xml
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\DotNetOpenAuth.Core.xml
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\DotNetOpenAuth.OAuth.Consumer.xml
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\DotNetOpenAuth.OAuth.xml
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\DotNetOpenAuth.OpenId.xml
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\obj\Release\dvm2014.csprojResolveAssemblyReference.cache
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\obj\Release\dvm2014.dll
+C:\Users\Viktor Denkovski\Documents\Sync\FVMS Work Documents\Websites and Applications\dvm2014 v.2.1\dvm2014\obj\Release\dvm2014.pdb
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\dvm2014.dll.config
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\dvm2014.dll
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\dvm2014.pdb
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\Antlr3.Runtime.dll
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\DotNetOpenAuth.AspNet.dll
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\DotNetOpenAuth.Core.dll
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\DotNetOpenAuth.OAuth.Consumer.dll
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\DotNetOpenAuth.OAuth.dll
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\DotNetOpenAuth.OpenId.dll
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\EntityFramework.dll
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\itextsharp.dll
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\Microsoft.Web.WebPages.OAuth.dll
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\Newtonsoft.Json.dll
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\PagedList.dll
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\PagedList.Mvc.dll
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\RazorPDF.dll
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\System.Net.Http.Formatting.dll
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\System.Web.Helpers.dll
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\System.Web.Http.dll
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\System.Web.Http.WebHost.dll
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\System.Web.Mvc.dll
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\System.Web.Optimization.dll
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\System.Web.Razor.dll
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\System.Web.WebPages.Deployment.dll
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\System.Web.WebPages.dll
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\System.Web.WebPages.Razor.dll
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\WebGrease.dll
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\WebMatrix.Data.dll
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\WebMatrix.WebData.dll
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\PagedList.xml
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\PagedList.Mvc.xml
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\EntityFramework.xml
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\Newtonsoft.Json.xml
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\System.Net.Http.Formatting.xml
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\System.Web.Helpers.xml
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\System.Web.Http.xml
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\System.Web.Http.WebHost.xml
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\System.Web.Mvc.xml
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\System.Web.Razor.xml
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\System.Web.WebPages.xml
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\System.Web.WebPages.Deployment.xml
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\System.Web.WebPages.Razor.xml
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\WebMatrix.Data.xml
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\Microsoft.Web.WebPages.OAuth.xml
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\WebMatrix.WebData.xml
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\DotNetOpenAuth.AspNet.xml
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\DotNetOpenAuth.Core.xml
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\DotNetOpenAuth.OAuth.Consumer.xml
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\DotNetOpenAuth.OAuth.xml
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\DotNetOpenAuth.OpenId.xml
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\obj\Release\dvm2014.csprojResolveAssemblyReference.cache
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\obj\Release\dvm2014.dll
+C:\Users\DVM\Documents\Visual Studio 2013\dvm2014 v.2.1\dvm2014\obj\Release\dvm2014.pdb

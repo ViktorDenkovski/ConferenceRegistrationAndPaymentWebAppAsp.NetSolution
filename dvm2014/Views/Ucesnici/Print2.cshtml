@@ -1,0 +1,32 @@
+﻿@model List<dvm2014.Models.Ucesnici>
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <h2>Html List in PDF</h2>
+    <table width="100%">
+        <tr>
+            <td>Ime i prezime</td>
+           
+            <td>Ucestvo</td>
+
+            <td>Uplatil</td>
+        </tr>
+        @foreach (var item in Model) 
+        {
+            <tr>
+                <td>@item.ImePrezime</td>
+               
+                <td>@item.Ucestvo</td>
+
+                <td>@item.NacinUplata</td>
+            </tr>
+        }
+    </table>
+</body>
+</html>

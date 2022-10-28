@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - Денови на ветеринарна медицина</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+        <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    </head>
+    <body>
+        <header>
+            <div class="content-wrapper">
+                <div class="float-left">
+                     <p class="site-title">
+               @*      @Html.Raw(@Html.ActionLink("Администрација", "Index", "Home").ToHtmlString().Replace("Администрација", "<img width='60px' height='60px' src=\"" + @Url.Content("~/Images/ukim.gif") + "\" alt=\"Администрација - Ресетирање на база\" title=\"Администрација на база\" />"))*@
+                        <img src="~/Images/ukim.gif" width="60px" height="60px" />
+                     Денови на ветеринарна медицина
+                    <img src="~/Images/fvms.gif" style="width:60px; height:60px;" />
+                         </p>
+                </div>
+                <div class="float-right">
+                    
+                    <nav>
+                        <ul id="menu">
+                            <li>@Html.ActionLink("Регистрација", "Index", "Ucesnici")</li>
+                            <li>@Html.ActionLink("Сертификати", "Certificate", "Home")</li>
+                            <li>@Html.ActionLink("За нас", "About", "Home")</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <div id="body">
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                
+                @RenderBody()
+            </section>
+        </div>
+        <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>&copy; @DateTime.Now.Year - М-р Виктор Денковски</p>
+                </div>
+            </div>
+        </footer>
+
+        @Scripts.Render("~/bundles/jquery")
+        <script src="~/Scripts/bootstrap.js"></script>
+        @RenderSection("scripts", required: false)
+    </body>
+</html>
